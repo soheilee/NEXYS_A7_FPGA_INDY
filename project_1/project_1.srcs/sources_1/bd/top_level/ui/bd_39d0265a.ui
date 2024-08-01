@@ -1,0 +1,48 @@
+{
+   "ActiveEmotionalView":"No Loops",
+   "Default View_ScaleFactor":"1.5",
+   "Default View_TopLeft":"-357,-453",
+   "DisplayTieOff":"1",
+   "ExpandedHierarchyInLayout":"",
+   "No Loops_ExpandedHierarchyInLayout":"",
+   "No Loops_Layout":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
+#  -string -flagsOSRD
+preplace port port-id_CPU_RESETN -pg 1 -lvl 0 -x 0 -y 500 -defaultsOSRD
+preplace port port-id_CLK100MHZ -pg 1 -lvl 0 -x 0 -y 300 -defaultsOSRD
+preplace port port-id_BTNU -pg 1 -lvl 0 -x 0 -y 380 -defaultsOSRD
+preplace inst clk_wiz -pg 1 -lvl 1 -x 120 -y 300 -defaultsOSRD -pinDir clk_in1 left -pinY clk_in1 0L -pinDir clk_100mhz right -pinY clk_100mhz 0R
+preplace inst proc_sys_reset_0 -pg 1 -lvl 2 -x 400 -y 480 -swap {0 1 2 3 4 6 7 8 9 5} -defaultsOSRD -pinDir slowest_sync_clk left -pinY slowest_sync_clk 0L -pinDir ext_reset_in left -pinY ext_reset_in 20L -pinDir aux_reset_in left -pinY aux_reset_in 40L -pinDir mb_debug_sys_rst left -pinY mb_debug_sys_rst 60L -pinDir dcm_locked left -pinY dcm_locked 80L -pinDir mb_reset right -pinY mb_reset 20R -pinBusDir bus_struct_reset right -pinBusY bus_struct_reset 40R -pinBusDir peripheral_reset right -pinBusY peripheral_reset 60R -pinBusDir interconnect_aresetn right -pinBusY interconnect_aresetn 80R -pinBusDir peripheral_aresetn right -pinBusY peripheral_aresetn 0R
+preplace inst packet_gen_0 -pg 1 -lvl 3 -x 690 -y 360 -swap {0 1 2 3 4 5 6 8 7} -defaultsOSRD -pinDir axis_out right -pinY axis_out 0R -pinDir clk left -pinY clk 0L -pinDir resetn left -pinY resetn 60L -pinDir start left -pinY start 20L
+preplace inst button -pg 1 -lvl 2 -x 400 -y 360 -defaultsOSRD -pinDir CLK left -pinY CLK 0L -pinDir PIN left -pinY PIN 20L -pinDir Q right -pinY Q 20R
+preplace inst system_ila_0 -pg 1 -lvl 5 -x 1270 -y 360 -defaultsOSRD -pinDir SLOT_0_AXIS left -pinY SLOT_0_AXIS 0L -pinDir SLOT_1_AXIS left -pinY SLOT_1_AXIS 20L -pinDir clk left -pinY clk 40L -pinBusDir probe0 left -pinBusY probe0 60L -pinBusDir probe1 left -pinBusY probe1 80L -pinDir resetn left -pinY resetn 100L
+preplace inst axis_data_fifo_0 -pg 1 -lvl 5 -x 1270 -y 60 -swap {0 1 2 3 4 5 6 7 9 8} -defaultsOSRD -pinDir S_AXIS left -pinY S_AXIS 0L -pinDir M_AXIS right -pinY M_AXIS 40R -pinDir s_axis_aresetn left -pinY s_axis_aresetn 40L -pinDir s_axis_aclk left -pinY s_axis_aclk 20L
+preplace inst data_consumer_0 -pg 1 -lvl 6 -x 1490 -y 100 -defaultsOSRD -pinDir axis_rx1 left -pinY axis_rx1 0L -pinDir axis_rx2 left -pinY axis_rx2 140L -pinDir clk left -pinY clk 200L -pinDir resetn left -pinY resetn 420L
+preplace inst axis_data_fifo_1 -pg 1 -lvl 5 -x 1270 -y 200 -swap {0 1 2 3 4 5 6 7 9 8} -defaultsOSRD -pinDir S_AXIS left -pinY S_AXIS 0L -pinDir M_AXIS right -pinY M_AXIS 40R -pinDir s_axis_aresetn left -pinY s_axis_aresetn 40L -pinDir s_axis_aclk left -pinY s_axis_aclk 20L
+preplace inst data_switch_0 -pg 1 -lvl 4 -x 950 -y 360 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 15 16 14} -defaultsOSRD -pinDir axis_in left -pinY axis_in 0L -pinDir axis_out1 right -pinY axis_out1 0R -pinDir axis_out2 right -pinY axis_out2 20R -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 80L -pinBusDir counter_ps right -pinBusY counter_ps 60R -pinBusDir counter_fs right -pinBusY counter_fs 80R -pinDir md_enable right -pinY md_enable 40R
+preplace netloc PIN_0_1 1 0 2 NJ 380 NJ
+preplace netloc button_Q 1 2 1 N 380
+preplace netloc clk_in1_0_1 1 0 1 NJ 300
+preplace netloc clk_wiz_clk_100mhz 1 1 5 220 300 570 300 800 300 1110 300 NJ
+preplace netloc data_switch_0_counter_fs 1 4 1 N 440
+preplace netloc data_switch_0_counter_ps 1 4 1 N 420
+preplace netloc ext_reset_in_0_1 1 0 2 NJ 500 NJ
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 2 4 570 480 800 500 1130 520 NJ
+preplace netloc axis_data_fifo_0_M_AXIS 1 5 1 N 100
+preplace netloc axis_data_fifo_1_M_AXIS 1 5 1 N 240
+preplace netloc data_switch_0_axis_out1 1 4 1 1090 60n
+preplace netloc data_switch_0_axis_out2 1 4 1 1150 200n
+preplace netloc packet_gen_0_axis_out 1 3 1 N 360
+levelinfo -pg 1 0 120 400 690 950 1270 1490 1590
+pagesize -pg 1 -db -bbox -sgen -130 0 1590 620
+",
+   "No Loops_ScaleFactor":"0.904706",
+   "No Loops_TopLeft":"-130,-95",
+   "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
+#  -string -flagsOSRD
+preplace inst clk_wiz -pg 1 -lvl 1 -x 150 -y -180 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 2 -x 440 -y -240 -defaultsOSRD
+levelinfo -pg 1 -310 150 440 620
+pagesize -pg 1 -db -bbox -sgen -310 -390 620 140
+"
+}
+0
