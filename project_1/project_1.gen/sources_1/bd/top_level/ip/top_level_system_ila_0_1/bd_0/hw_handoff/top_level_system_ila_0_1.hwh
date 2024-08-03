@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Aug  3 17:10:18 2024" VIVADOVERSION="2021.1.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Aug  3 17:18:51 2024" VIVADOVERSION="2021.1.1">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a100t" NAME="bd_5b7c" PACKAGE="csg324" SPEEDGRADE="-1"/>
 
@@ -89,7 +89,7 @@
       <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
       <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
       <PARAMETER NAME="PHASE" VALUE="0.0"/>
-      <PARAMETER NAME="CLK_DOMAIN" VALUE="/clk_wiz_clk_out1"/>
+      <PARAMETER NAME="CLK_DOMAIN" VALUE="/source_100mhz/clk_wiz_clk_out1"/>
       <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
       <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
       <PORTMAPS>
@@ -110,7 +110,7 @@
       <PARAMETER NAME="HAS_TLAST" VALUE="0"/>
       <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
       <PARAMETER NAME="PHASE" VALUE="0.0"/>
-      <PARAMETER NAME="CLK_DOMAIN" VALUE="/clk_wiz_clk_out1"/>
+      <PARAMETER NAME="CLK_DOMAIN" VALUE="/source_100mhz/clk_wiz_clk_out1"/>
       <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
       <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
       <PORTMAPS>
@@ -1576,7 +1576,7 @@
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.0"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="/clk_wiz_clk_out1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="/source_100mhz/clk_wiz_clk_out1"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
@@ -1597,7 +1597,7 @@
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.0"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="/clk_wiz_clk_out1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="/source_100mhz/clk_wiz_clk_out1"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
@@ -1618,7 +1618,7 @@
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.0"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="/clk_wiz_clk_out1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="/source_100mhz/clk_wiz_clk_out1"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
@@ -1639,7 +1639,7 @@
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.0"/>
-          <PARAMETER NAME="CLK_DOMAIN" VALUE="/clk_wiz_clk_out1"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="/source_100mhz/clk_wiz_clk_out1"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>

@@ -128,6 +128,69 @@ if { $nRet != 0 } {
 ##################################################################
 
 
+# Hierarchical cell: source_100mhz
+proc create_hier_cell_source_100mhz { parentCell nameHier } {
+
+  variable script_folder
+
+  if { $parentCell eq "" || $nameHier eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2092 -severity "ERROR" "create_hier_cell_source_100mhz() - Empty argument(s)!"}
+     return
+  }
+
+  # Get object for parentCell
+  set parentObj [get_bd_cells $parentCell]
+  if { $parentObj == "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2090 -severity "ERROR" "Unable to find parent cell <$parentCell>!"}
+     return
+  }
+
+  # Make sure parentObj is hier blk
+  set parentType [get_property TYPE $parentObj]
+  if { $parentType ne "hier" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2091 -severity "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     return
+  }
+
+  # Save current instance; Restore later
+  set oldCurInst [current_bd_instance .]
+
+  # Set parent object as current
+  current_bd_instance $parentObj
+
+  # Create cell and set as current instance
+  set hier_obj [create_bd_cell -type hier $nameHier]
+  current_bd_instance $hier_obj
+
+  # Create interface pins
+
+  # Create pins
+  create_bd_pin -dir I -type clk CLK100MHZ
+  create_bd_pin -dir I -type rst CPU_RESETN
+  create_bd_pin -dir O -type clk clk_100mhz
+  create_bd_pin -dir O -from 0 -to 0 -type rst peripheral_aresetn
+
+  # Create instance: clk_wiz, and set properties
+  set clk_wiz [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz ]
+  set_property -dict [ list \
+   CONFIG.CLK_OUT1_PORT {clk_100mhz} \
+   CONFIG.USE_LOCKED {false} \
+   CONFIG.USE_RESET {false} \
+ ] $clk_wiz
+
+  # Create instance: proc_sys_reset_0, and set properties
+  set proc_sys_reset_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 proc_sys_reset_0 ]
+
+  # Create port connections
+  connect_bd_net -net clk_in1_0_1 [get_bd_pins CLK100MHZ] [get_bd_pins clk_wiz/clk_in1]
+  connect_bd_net -net clk_wiz_clk_100mhz [get_bd_pins clk_100mhz] [get_bd_pins clk_wiz/clk_100mhz] [get_bd_pins proc_sys_reset_0/slowest_sync_clk]
+  connect_bd_net -net ext_reset_in_0_1 [get_bd_pins CPU_RESETN] [get_bd_pins proc_sys_reset_0/ext_reset_in]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins peripheral_aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
+
+  # Restore current instance
+  current_bd_instance $oldCurInst
+}
+
 
 # Procedure to create entire design; Provide argument to make
 # procedure reusable. If parentCell is "", will use root.
@@ -168,18 +231,6 @@ proc create_root_design { parentCell } {
   set CLK100MHZ [ create_bd_port -dir I -type clk CLK100MHZ ]
   set CPU_RESETN [ create_bd_port -dir I -type rst CPU_RESETN ]
 
-  # Create instance: axis_data_fifo_0, and set properties
-  set axis_data_fifo_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_data_fifo:2.0 axis_data_fifo_0 ]
-  set_property -dict [ list \
-   CONFIG.FIFO_DEPTH {8192} \
- ] $axis_data_fifo_0
-
-  # Create instance: axis_data_fifo_1, and set properties
-  set axis_data_fifo_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_data_fifo:2.0 axis_data_fifo_1 ]
-  set_property -dict [ list \
-   CONFIG.FIFO_DEPTH {8192} \
- ] $axis_data_fifo_1
-
   # Create instance: button, and set properties
   set block_name button
   set block_cell_name button
@@ -191,14 +242,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  # Create instance: clk_wiz, and set properties
-  set clk_wiz [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz ]
-  set_property -dict [ list \
-   CONFIG.CLK_OUT1_PORT {clk_100mhz} \
-   CONFIG.USE_LOCKED {false} \
-   CONFIG.USE_RESET {false} \
- ] $clk_wiz
-
   # Create instance: data_consumer_0, and set properties
   set block_name data_consumer
   set block_cell_name data_consumer_0
@@ -254,8 +297,8 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  # Create instance: proc_sys_reset_0, and set properties
-  set proc_sys_reset_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 proc_sys_reset_0 ]
+  # Create instance: source_100mhz
+  create_hier_cell_source_100mhz [current_bd_instance .] source_100mhz
 
   # Create instance: system_ila_0, and set properties
   set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
@@ -272,26 +315,24 @@ proc create_root_design { parentCell } {
   # Create interface connections
   connect_bd_intf_net -intf_net axis_data_fifo_0_M_AXIS [get_bd_intf_pins data_consumer_0/axis_rx1] [get_bd_intf_pins packet_counter_0/axis_out1]
 connect_bd_intf_net -intf_net [get_bd_intf_nets axis_data_fifo_0_M_AXIS] [get_bd_intf_pins packet_counter_0/axis_out1] [get_bd_intf_pins system_ila_0/SLOT_0_AXIS]
-  connect_bd_intf_net -intf_net axis_data_fifo_0_M_AXIS1 [get_bd_intf_pins axis_data_fifo_0/M_AXIS] [get_bd_intf_pins packet_counter_0/axis_in2]
   connect_bd_intf_net -intf_net axis_data_fifo_1_M_AXIS [get_bd_intf_pins data_consumer_0/axis_rx2] [get_bd_intf_pins packet_counter_0/axis_out2]
 connect_bd_intf_net -intf_net [get_bd_intf_nets axis_data_fifo_1_M_AXIS] [get_bd_intf_pins packet_counter_0/axis_out2] [get_bd_intf_pins system_ila_0/SLOT_1_AXIS]
-  connect_bd_intf_net -intf_net axis_data_fifo_1_M_AXIS1 [get_bd_intf_pins axis_data_fifo_1/M_AXIS] [get_bd_intf_pins packet_counter_0/axis_in1]
-  connect_bd_intf_net -intf_net data_switch_0_axis_out1 [get_bd_intf_pins axis_data_fifo_0/S_AXIS] [get_bd_intf_pins data_switch_0/axis_out1]
-  connect_bd_intf_net -intf_net data_switch_0_axis_out2 [get_bd_intf_pins axis_data_fifo_1/S_AXIS] [get_bd_intf_pins data_switch_0/axis_out2]
+  connect_bd_intf_net -intf_net data_switch_0_axis_out1 [get_bd_intf_pins data_switch_0/axis_out1] [get_bd_intf_pins packet_counter_0/axis_in1]
+  connect_bd_intf_net -intf_net data_switch_0_axis_out2 [get_bd_intf_pins data_switch_0/axis_out2] [get_bd_intf_pins packet_counter_0/axis_in2]
   connect_bd_intf_net -intf_net meta_data_0_axis_out [get_bd_intf_pins data_consumer_0/axis_rx3] [get_bd_intf_pins meta_data_0/axis_out]
   connect_bd_intf_net -intf_net packet_gen_0_axis_out [get_bd_intf_pins data_switch_0/axis_in] [get_bd_intf_pins packet_gen_0/axis_out]
 
   # Create port connections
   connect_bd_net -net PIN_0_1 [get_bd_ports BTNU] [get_bd_pins button/PIN]
   connect_bd_net -net button_Q [get_bd_pins button/Q] [get_bd_pins packet_gen_0/start]
-  connect_bd_net -net clk_in1_0_1 [get_bd_ports CLK100MHZ] [get_bd_pins clk_wiz/clk_in1]
-  connect_bd_net -net clk_wiz_clk_100mhz [get_bd_pins axis_data_fifo_0/s_axis_aclk] [get_bd_pins axis_data_fifo_1/s_axis_aclk] [get_bd_pins button/CLK] [get_bd_pins clk_wiz/clk_100mhz] [get_bd_pins data_consumer_0/clk] [get_bd_pins data_switch_0/clk] [get_bd_pins meta_data_0/clk] [get_bd_pins packet_counter_0/clk] [get_bd_pins packet_gen_0/clk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins system_ila_0/clk]
+  connect_bd_net -net clk_in1_0_1 [get_bd_ports CLK100MHZ] [get_bd_pins source_100mhz/CLK100MHZ]
+  connect_bd_net -net clk_wiz_clk_100mhz [get_bd_pins button/CLK] [get_bd_pins data_consumer_0/clk] [get_bd_pins data_switch_0/clk] [get_bd_pins meta_data_0/clk] [get_bd_pins packet_counter_0/clk] [get_bd_pins packet_gen_0/clk] [get_bd_pins source_100mhz/clk_100mhz] [get_bd_pins system_ila_0/clk]
   connect_bd_net -net data_switch_0_counter_fs [get_bd_pins data_switch_0/counter_fs] [get_bd_pins system_ila_0/probe2]
   connect_bd_net -net data_switch_0_counter_ps [get_bd_pins data_switch_0/counter_ps] [get_bd_pins system_ila_0/probe1]
   connect_bd_net -net data_switch_0_md_enable [get_bd_pins data_switch_0/md_enable] [get_bd_pins meta_data_0/start] [get_bd_pins system_ila_0/probe3]
-  connect_bd_net -net ext_reset_in_0_1 [get_bd_ports CPU_RESETN] [get_bd_pins proc_sys_reset_0/ext_reset_in]
+  connect_bd_net -net ext_reset_in_0_1 [get_bd_ports CPU_RESETN] [get_bd_pins source_100mhz/CPU_RESETN]
   connect_bd_net -net packet_counter_0_packet_counter [get_bd_pins packet_counter_0/packet_counter] [get_bd_pins system_ila_0/probe0]
-  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins axis_data_fifo_0/s_axis_aresetn] [get_bd_pins axis_data_fifo_1/s_axis_aresetn] [get_bd_pins data_consumer_0/resetn] [get_bd_pins data_switch_0/resetn] [get_bd_pins meta_data_0/resetn] [get_bd_pins packet_counter_0/resetn] [get_bd_pins packet_gen_0/resetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn] [get_bd_pins system_ila_0/resetn]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins data_consumer_0/resetn] [get_bd_pins data_switch_0/resetn] [get_bd_pins meta_data_0/resetn] [get_bd_pins packet_counter_0/resetn] [get_bd_pins packet_gen_0/resetn] [get_bd_pins source_100mhz/peripheral_aresetn] [get_bd_pins system_ila_0/resetn]
 
   # Create address segments
 

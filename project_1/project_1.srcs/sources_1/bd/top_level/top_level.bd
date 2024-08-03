@@ -11,17 +11,17 @@
       "validated": "true"
     },
     "design_tree": {
-      "clk_wiz": "",
-      "proc_sys_reset_0": "",
       "packet_gen_0": "",
       "button": "",
-      "axis_data_fifo_0": "",
-      "axis_data_fifo_1": "",
       "data_consumer_0": "",
       "meta_data_0": "",
       "data_switch_0": "",
       "system_ila_0": "",
-      "packet_counter_0": ""
+      "packet_counter_0": "",
+      "source_100mhz": {
+        "proc_sys_reset_0": "",
+        "clk_wiz": ""
+      }
     },
     "ports": {
       "CPU_RESETN": {
@@ -69,29 +69,6 @@
       }
     },
     "components": {
-      "clk_wiz": {
-        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
-        "xci_name": "top_level_clk_wiz_0_0",
-        "xci_path": "ip\\top_level_clk_wiz_0_0\\top_level_clk_wiz_0_0.xci",
-        "inst_hier_path": "clk_wiz",
-        "parameters": {
-          "CLK_OUT1_PORT": {
-            "value": "clk_100mhz"
-          },
-          "USE_LOCKED": {
-            "value": "false"
-          },
-          "USE_RESET": {
-            "value": "false"
-          }
-        }
-      },
-      "proc_sys_reset_0": {
-        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
-        "xci_name": "top_level_proc_sys_reset_0_0",
-        "xci_path": "ip\\top_level_proc_sys_reset_0_0\\top_level_proc_sys_reset_0_0.xci",
-        "inst_hier_path": "proc_sys_reset_0"
-      },
       "packet_gen_0": {
         "vlnv": "xilinx.com:module_ref:packet_gen:1.0",
         "xci_name": "top_level_packet_gen_0_0",
@@ -149,7 +126,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -203,7 +180,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             }
@@ -247,7 +224,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             }
@@ -257,28 +234,6 @@
           },
           "Q": {
             "direction": "O"
-          }
-        }
-      },
-      "axis_data_fifo_0": {
-        "vlnv": "xilinx.com:ip:axis_data_fifo:2.0",
-        "xci_name": "top_level_axis_data_fifo_0_1",
-        "xci_path": "ip\\top_level_axis_data_fifo_0_1\\top_level_axis_data_fifo_0_1.xci",
-        "inst_hier_path": "axis_data_fifo_0",
-        "parameters": {
-          "FIFO_DEPTH": {
-            "value": "8192"
-          }
-        }
-      },
-      "axis_data_fifo_1": {
-        "vlnv": "xilinx.com:ip:axis_data_fifo:2.0",
-        "xci_name": "top_level_axis_data_fifo_1_0",
-        "xci_path": "ip\\top_level_axis_data_fifo_1_0\\top_level_axis_data_fifo_1_0.xci",
-        "inst_hier_path": "axis_data_fifo_1",
-        "parameters": {
-          "FIFO_DEPTH": {
-            "value": "8192"
           }
         }
       },
@@ -339,7 +294,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -416,7 +371,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -493,7 +448,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -547,7 +502,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             }
@@ -621,7 +576,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -665,7 +620,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             }
@@ -742,7 +697,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -809,7 +764,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -876,7 +831,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -920,7 +875,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             }
@@ -1045,7 +1000,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -1112,7 +1067,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -1179,7 +1134,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -1246,7 +1201,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             },
@@ -1290,7 +1245,7 @@
                 "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "/clk_wiz_clk_out1",
+                "value": "/source_100mhz/clk_wiz_clk_out1",
                 "value_src": "ip_prop"
               }
             }
@@ -1311,6 +1266,80 @@
             "right": "0"
           }
         }
+      },
+      "source_100mhz": {
+        "ports": {
+          "clk_100mhz": {
+            "type": "clk",
+            "direction": "O"
+          },
+          "CPU_RESETN": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "peripheral_aresetn": {
+            "type": "rst",
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          },
+          "CLK100MHZ": {
+            "type": "clk",
+            "direction": "I"
+          }
+        },
+        "components": {
+          "proc_sys_reset_0": {
+            "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+            "xci_name": "top_level_proc_sys_reset_0_0",
+            "xci_path": "ip\\top_level_proc_sys_reset_0_0\\top_level_proc_sys_reset_0_0.xci",
+            "inst_hier_path": "source_100mhz/proc_sys_reset_0"
+          },
+          "clk_wiz": {
+            "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+            "xci_name": "top_level_clk_wiz_0_0",
+            "xci_path": "ip\\top_level_clk_wiz_0_0\\top_level_clk_wiz_0_0.xci",
+            "inst_hier_path": "source_100mhz/clk_wiz",
+            "parameters": {
+              "CLK_OUT1_PORT": {
+                "value": "clk_100mhz"
+              },
+              "USE_LOCKED": {
+                "value": "false"
+              },
+              "USE_RESET": {
+                "value": "false"
+              }
+            }
+          }
+        },
+        "nets": {
+          "clk_in1_0_1": {
+            "ports": [
+              "CLK100MHZ",
+              "clk_wiz/clk_in1"
+            ]
+          },
+          "clk_wiz_clk_100mhz": {
+            "ports": [
+              "clk_wiz/clk_100mhz",
+              "clk_100mhz",
+              "proc_sys_reset_0/slowest_sync_clk"
+            ]
+          },
+          "ext_reset_in_0_1": {
+            "ports": [
+              "CPU_RESETN",
+              "proc_sys_reset_0/ext_reset_in"
+            ]
+          },
+          "proc_sys_reset_0_peripheral_aresetn": {
+            "ports": [
+              "proc_sys_reset_0/peripheral_aresetn",
+              "peripheral_aresetn"
+            ]
+          }
+        }
       }
     },
     "interface_nets": {
@@ -1321,12 +1350,6 @@
           "system_ila_0/SLOT_0_AXIS"
         ]
       },
-      "axis_data_fifo_0_M_AXIS1": {
-        "interface_ports": [
-          "packet_counter_0/axis_in2",
-          "axis_data_fifo_0/M_AXIS"
-        ]
-      },
       "axis_data_fifo_1_M_AXIS": {
         "interface_ports": [
           "data_consumer_0/axis_rx2",
@@ -1334,22 +1357,16 @@
           "system_ila_0/SLOT_1_AXIS"
         ]
       },
-      "axis_data_fifo_1_M_AXIS1": {
-        "interface_ports": [
-          "packet_counter_0/axis_in1",
-          "axis_data_fifo_1/M_AXIS"
-        ]
-      },
       "data_switch_0_axis_out1": {
         "interface_ports": [
           "data_switch_0/axis_out1",
-          "axis_data_fifo_0/S_AXIS"
+          "packet_counter_0/axis_in1"
         ]
       },
       "data_switch_0_axis_out2": {
         "interface_ports": [
           "data_switch_0/axis_out2",
-          "axis_data_fifo_1/S_AXIS"
+          "packet_counter_0/axis_in2"
         ]
       },
       "meta_data_0_axis_out": {
@@ -1381,17 +1398,14 @@
       "clk_in1_0_1": {
         "ports": [
           "CLK100MHZ",
-          "clk_wiz/clk_in1"
+          "source_100mhz/CLK100MHZ"
         ]
       },
       "clk_wiz_clk_100mhz": {
         "ports": [
-          "clk_wiz/clk_100mhz",
-          "proc_sys_reset_0/slowest_sync_clk",
+          "source_100mhz/clk_100mhz",
           "packet_gen_0/clk",
           "button/CLK",
-          "axis_data_fifo_0/s_axis_aclk",
-          "axis_data_fifo_1/s_axis_aclk",
           "data_consumer_0/clk",
           "meta_data_0/clk",
           "data_switch_0/clk",
@@ -1421,7 +1435,7 @@
       "ext_reset_in_0_1": {
         "ports": [
           "CPU_RESETN",
-          "proc_sys_reset_0/ext_reset_in"
+          "source_100mhz/CPU_RESETN"
         ]
       },
       "packet_counter_0_packet_counter": {
@@ -1432,10 +1446,8 @@
       },
       "proc_sys_reset_0_peripheral_aresetn": {
         "ports": [
-          "proc_sys_reset_0/peripheral_aresetn",
+          "source_100mhz/peripheral_aresetn",
           "packet_gen_0/resetn",
-          "axis_data_fifo_0/s_axis_aresetn",
-          "axis_data_fifo_1/s_axis_aresetn",
           "data_consumer_0/resetn",
           "meta_data_0/resetn",
           "data_switch_0/resetn",
