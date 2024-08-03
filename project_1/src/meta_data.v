@@ -6,8 +6,8 @@ module meta_data # (parameter DW=128)
     input   start,
 
     // Our output stream
-    output     [DW-1:0]    axis_out_tdata,
-    output                 axis_out_tvalid,
+    output   reg  [DW-1:0]    axis_out_tdata,
+    output   reg              axis_out_tvalid,
     input                  axis_out_tready
 );
 
@@ -24,12 +24,6 @@ always @(posedge clk) begin
     
 
     
-end
-
-always @* begin
-    if(start)
-        axis_out_tvalid <= 0;
-
 end
 
 endmodule

@@ -1,10 +1,10 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
-// Date        : Wed Jul 31 09:40:12 2024
+// Date        : Wed Jul 31 09:40:11 2024
 // Host        : LUDMW030265 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_axis_data_fifo_0_1/top_level_axis_data_fifo_0_1_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top top_level_axis_data_fifo_0_1 -prefix
+//               top_level_axis_data_fifo_0_1_ top_level_axis_data_fifo_0_1_stub.v
 // Design      : top_level_axis_data_fifo_0_1
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

@@ -105,31 +105,59 @@ end
 // The output is set to each output for the packet length defined by the state machine. 
 
 always @* begin
-    if(fsm_state==0) begin
-        if(output_path==FSM_OUTPUT_AXIS1) begin
-            axis_out1_tdata  <= axis_in_tdata;
-            axis_out1_tvalid <= axis_in_tvalid;
-            axis_out2_tvalid <= 0;   
+    // Default assignments to avoid latches
+    md_enable = 0;
+    axis_out1_tdata = 0;
+    axis_out2_tdata = 0;
+    axis_out1_tvalid = 0;
+    axis_out2_tvalid = 0;
+
+    case (fsm_state)
+        0: begin
+            md_enable = 0;
+            case (output_path)
+                FSM_OUTPUT_AXIS1: begin
+                    axis_out1_tdata  = axis_in_tdata;
+                    axis_out1_tvalid = axis_in_tvalid;
+                    axis_out2_tvalid = 0;   
+                end
+                FSM_OUTPUT_AXIS2: begin
+                    axis_out2_tdata  = axis_in_tdata;
+                    axis_out2_tvalid = axis_in_tvalid;
+                    axis_out1_tvalid = 0;
+                end
+                default: begin
+                    axis_out1_tdata = 0;
+                    axis_out2_tdata = 0;
+                    axis_out1_tvalid = 0;
+                    axis_out2_tvalid = 0;
+                end
+            endcase
         end
-        else if (output_path==FSM_OUTPUT_AXIS2) begin
-            axis_out2_tdata  <= axis_in_tdata;
-            axis_out2_tvalid <= axis_in_tvalid;
-            axis_out1_tvalid <= 0;
+        
+        1: begin
+            axis_out1_tdata  = 1;
+            axis_out2_tdata  = 1;
+            axis_out1_tvalid = 1;
+            axis_out2_tvalid = 1;
+            md_enable = 1;
         end
-    end
-    else if(fsm_state==1) begin
-        axis_out1_tdata  <= 1;
-        axis_out2_tdata  <= 1;
-        axis_out1_tvalid <= 1;
-        axis_out1_tvalid <= 1;
-    end
-    else if(fsm_state==2) begin
-        axis_out1_tdata  <= 1111;
-        axis_out2_tdata  <= 1111;
-        axis_out1_tvalid <= 1;
-        axis_out1_tvalid <= 1;
-    end
-    
+        
+        2: begin
+            axis_out1_tdata  = 1111;
+            axis_out2_tdata  = 1111;
+            axis_out1_tvalid = 1;
+            axis_out2_tvalid = 1;
+        end
+        
+        default: begin
+            axis_out1_tdata = 0;
+            axis_out2_tdata = 0;
+            axis_out1_tvalid = 0;
+            axis_out2_tvalid = 0;
+            md_enable = 0;
+        end
+    endcase
 end
 
 endmodule

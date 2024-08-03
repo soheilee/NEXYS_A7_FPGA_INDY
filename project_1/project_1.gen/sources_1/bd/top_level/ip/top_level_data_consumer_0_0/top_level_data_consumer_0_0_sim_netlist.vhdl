@@ -1,7 +1,7 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
--- Date        : Tue Jul 30 11:21:32 2024
+-- Date        : Thu Aug  1 16:26:44 2024
 -- Host        : LUDMW030265 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_data_consumer_0_0/top_level_data_consumer_0_0_sim_netlist.vhdl
@@ -27,7 +27,12 @@ entity top_level_data_consumer_0_0 is
     axis_rx2_tkeep : in STD_LOGIC_VECTOR ( 15 downto 0 );
     axis_rx2_tlast : in STD_LOGIC;
     axis_rx2_tvalid : in STD_LOGIC;
-    axis_rx2_tready : out STD_LOGIC
+    axis_rx2_tready : out STD_LOGIC;
+    axis_rx3_tdata : in STD_LOGIC_VECTOR ( 127 downto 0 );
+    axis_rx3_tkeep : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    axis_rx3_tlast : in STD_LOGIC;
+    axis_rx3_tvalid : in STD_LOGIC;
+    axis_rx3_tready : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of top_level_data_consumer_0_0 : entity is true;
@@ -53,17 +58,24 @@ architecture STRUCTURE of top_level_data_consumer_0_0 is
   attribute X_INTERFACE_INFO of axis_rx2_tready : signal is "xilinx.com:interface:axis:1.0 axis_rx2 TREADY";
   attribute X_INTERFACE_PARAMETER of axis_rx2_tready : signal is "XIL_INTERFACENAME axis_rx2, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of axis_rx2_tvalid : signal is "xilinx.com:interface:axis:1.0 axis_rx2 TVALID";
+  attribute X_INTERFACE_INFO of axis_rx3_tlast : signal is "xilinx.com:interface:axis:1.0 axis_rx3 TLAST";
+  attribute X_INTERFACE_INFO of axis_rx3_tready : signal is "xilinx.com:interface:axis:1.0 axis_rx3 TREADY";
+  attribute X_INTERFACE_PARAMETER of axis_rx3_tready : signal is "XIL_INTERFACENAME axis_rx3, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0";
+  attribute X_INTERFACE_INFO of axis_rx3_tvalid : signal is "xilinx.com:interface:axis:1.0 axis_rx3 TVALID";
   attribute X_INTERFACE_INFO of clk : signal is "xilinx.com:signal:clock:1.0 clk CLK";
-  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_rx1:axis_rx2, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of clk : signal is "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_rx1:axis_rx2:axis_rx3, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of resetn : signal is "xilinx.com:signal:reset:1.0 resetn RST";
   attribute X_INTERFACE_PARAMETER of resetn : signal is "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of axis_rx1_tdata : signal is "xilinx.com:interface:axis:1.0 axis_rx1 TDATA";
   attribute X_INTERFACE_INFO of axis_rx1_tkeep : signal is "xilinx.com:interface:axis:1.0 axis_rx1 TKEEP";
   attribute X_INTERFACE_INFO of axis_rx2_tdata : signal is "xilinx.com:interface:axis:1.0 axis_rx2 TDATA";
   attribute X_INTERFACE_INFO of axis_rx2_tkeep : signal is "xilinx.com:interface:axis:1.0 axis_rx2 TKEEP";
+  attribute X_INTERFACE_INFO of axis_rx3_tdata : signal is "xilinx.com:interface:axis:1.0 axis_rx3 TDATA";
+  attribute X_INTERFACE_INFO of axis_rx3_tkeep : signal is "xilinx.com:interface:axis:1.0 axis_rx3 TKEEP";
 begin
   axis_rx1_tready <= \<const1>\;
   axis_rx2_tready <= \<const1>\;
+  axis_rx3_tready <= \<const1>\;
 VCC: unisim.vcomponents.VCC
      port map (
       P => \<const1>\
