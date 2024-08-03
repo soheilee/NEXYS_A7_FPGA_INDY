@@ -12,20 +12,13 @@ module data_consumer # (parameter DW=128)
     input[DW/8-1:0] axis_rx2_tkeep,
     input           axis_rx2_tlast,
     input           axis_rx2_tvalid,
-    output reg      axis_rx2_tready,
-
-    input[DW-1:0]   axis_rx3_tdata,
-    input[DW/8-1:0] axis_rx3_tkeep,
-    input           axis_rx3_tlast,
-    input           axis_rx3_tvalid,
-    output reg      axis_rx3_tready
+    output reg      axis_rx2_tready
 
     );
 
 always @(posedge clk) begin
     axis_rx1_tready <= 1;
     axis_rx2_tready <= 1;
-    axis_rx3_tready <= 1;
 end
 
 endmodule

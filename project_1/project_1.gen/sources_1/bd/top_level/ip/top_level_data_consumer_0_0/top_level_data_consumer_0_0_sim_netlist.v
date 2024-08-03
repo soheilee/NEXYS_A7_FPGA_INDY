@@ -1,10 +1,10 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
-// Date        : Thu Aug  1 16:26:44 2024
+// Date        : Tue Jul 30 11:21:32 2024
 // Host        : LUDMW030265 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_data_consumer_0_0/top_level_data_consumer_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top top_level_data_consumer_0_0 -prefix
+//               top_level_data_consumer_0_0_ top_level_data_consumer_0_0_sim_netlist.v
 // Design      : top_level_data_consumer_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -27,13 +27,8 @@ module top_level_data_consumer_0_0
     axis_rx2_tkeep,
     axis_rx2_tlast,
     axis_rx2_tvalid,
-    axis_rx2_tready,
-    axis_rx3_tdata,
-    axis_rx3_tkeep,
-    axis_rx3_tlast,
-    axis_rx3_tvalid,
-    axis_rx3_tready);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_rx1:axis_rx2:axis_rx3, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, INSERT_VIP 0" *) input clk;
+    axis_rx2_tready);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_rx1:axis_rx2, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, INSERT_VIP 0" *) input clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input resetn;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx1 TDATA" *) input [127:0]axis_rx1_tdata;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx1 TKEEP" *) input [15:0]axis_rx1_tkeep;
@@ -45,17 +40,11 @@ module top_level_data_consumer_0_0
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx2 TLAST" *) input axis_rx2_tlast;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx2 TVALID" *) input axis_rx2_tvalid;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx2 TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_rx2, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) output axis_rx2_tready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx3 TDATA" *) input [127:0]axis_rx3_tdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx3 TKEEP" *) input [15:0]axis_rx3_tkeep;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx3 TLAST" *) input axis_rx3_tlast;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx3 TVALID" *) input axis_rx3_tvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_rx3 TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_rx3, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) output axis_rx3_tready;
 
   wire \<const1> ;
 
   assign axis_rx1_tready = \<const1> ;
   assign axis_rx2_tready = \<const1> ;
-  assign axis_rx3_tready = \<const1> ;
   VCC VCC
        (.P(\<const1> ));
 endmodule

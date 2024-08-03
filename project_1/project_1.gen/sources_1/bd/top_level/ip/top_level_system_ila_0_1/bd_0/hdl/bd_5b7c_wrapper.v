@@ -8,10 +8,12 @@
 
 module bd_5b7c_wrapper
    (SLOT_0_AXIS_tdata,
+    SLOT_0_AXIS_tkeep,
     SLOT_0_AXIS_tlast,
     SLOT_0_AXIS_tready,
     SLOT_0_AXIS_tvalid,
     SLOT_1_AXIS_tdata,
+    SLOT_1_AXIS_tkeep,
     SLOT_1_AXIS_tlast,
     SLOT_1_AXIS_tready,
     SLOT_1_AXIS_tvalid,
@@ -22,10 +24,12 @@ module bd_5b7c_wrapper
     probe3,
     resetn);
   input [127:0]SLOT_0_AXIS_tdata;
+  input [15:0]SLOT_0_AXIS_tkeep;
   input SLOT_0_AXIS_tlast;
   input SLOT_0_AXIS_tready;
   input SLOT_0_AXIS_tvalid;
   input [127:0]SLOT_1_AXIS_tdata;
+  input [15:0]SLOT_1_AXIS_tkeep;
   input SLOT_1_AXIS_tlast;
   input SLOT_1_AXIS_tready;
   input SLOT_1_AXIS_tvalid;
@@ -37,10 +41,12 @@ module bd_5b7c_wrapper
   input resetn;
 
   wire [127:0]SLOT_0_AXIS_tdata;
+  wire [15:0]SLOT_0_AXIS_tkeep;
   wire SLOT_0_AXIS_tlast;
   wire SLOT_0_AXIS_tready;
   wire SLOT_0_AXIS_tvalid;
   wire [127:0]SLOT_1_AXIS_tdata;
+  wire [15:0]SLOT_1_AXIS_tkeep;
   wire SLOT_1_AXIS_tlast;
   wire SLOT_1_AXIS_tready;
   wire SLOT_1_AXIS_tvalid;
@@ -53,10 +59,12 @@ module bd_5b7c_wrapper
 
   bd_5b7c bd_5b7c_i
        (.SLOT_0_AXIS_tdata(SLOT_0_AXIS_tdata),
+        .SLOT_0_AXIS_tkeep(SLOT_0_AXIS_tkeep),
         .SLOT_0_AXIS_tlast(SLOT_0_AXIS_tlast),
         .SLOT_0_AXIS_tready(SLOT_0_AXIS_tready),
         .SLOT_0_AXIS_tvalid(SLOT_0_AXIS_tvalid),
         .SLOT_1_AXIS_tdata(SLOT_1_AXIS_tdata),
+        .SLOT_1_AXIS_tkeep(SLOT_1_AXIS_tkeep),
         .SLOT_1_AXIS_tlast(SLOT_1_AXIS_tlast),
         .SLOT_1_AXIS_tready(SLOT_1_AXIS_tready),
         .SLOT_1_AXIS_tvalid(SLOT_1_AXIS_tvalid),
