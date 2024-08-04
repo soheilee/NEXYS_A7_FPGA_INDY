@@ -7,11 +7,9 @@ module header_adder #(
 (
     input                      clk, resetn,
     input [128:0]          packet_counter,  //Counter for the path switch
-    input                  md_enable,
     output reg  [2:0]       fsm_state,
     output reg [128:0]      counter,
     output reg [2:0]      counter_md,
-    output reg [128:0]      counter_fc,
 
     // The input stream #1
     input[DW-1:0]              axis_in1_tdata,
@@ -47,19 +45,19 @@ assign axis_in1_tready = (resetn == 1);
 assign axis_in2_tready = (resetn == 1);
 assign axis_in_meta_tready = (resetn == 1);
 
-localparam META_DATA_LENGTH = 2;
+localparam META_DATA_LENGTH = 1;
 
 always @(posedge clk) begin
     if (resetn == 0) begin
         counter <=0;
         counter_md <= 0;
-        counter_fc <=0;
         fsm_state <=0;
     end
     else case(fsm_state)
 
         0:  if (counter == FRAME_SIZE/PACKET_SIZE) begin
                 counter <= 0;
+                counter_md <=0;
                 fsm_state <=1;
             end
             else begin
@@ -73,12 +71,8 @@ always @(posedge clk) begin
                 counter_md <= counter_md +1;
             end
         
-        2:  if (counter_fc) begin
-                counter_fc <= 0;
+        2:  begin
                 fsm_state <=0;
-            end
-            else begin
-                counter_fc <= counter_fc +1;
             end
 
     endcase
@@ -104,7 +98,7 @@ always @* begin
         end
 
         1: begin
-            if (axis_in_meta_tvalid&&md_enable) begin
+            if (axis_in_meta_tvalid) begin
                 axis_out1_tdata = axis_in_meta_tdata;
                 axis_out2_tdata = axis_in_meta_tdata;
                 axis_out1_tvalid = axis_in_meta_tvalid;

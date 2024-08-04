@@ -3,7 +3,6 @@ module meta_data # (parameter DW=128)
     input   clk, resetn,
 
     // We start generating packets when this is asserted
-    input   start,
 
     // Our output stream
     output   reg  [DW-1:0]    axis_out_tdata,
