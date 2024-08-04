@@ -16,14 +16,10 @@ reg [2:0] counter;
 always @(posedge clk) begin
     if (resetn == 0)
         axis_out_tvalid <= 0;
-    if(start) begin
-        axis_out_tvalid <= 1;
-        axis_out_tdata <= 1638;
-        counter <= counter +1;
-    end
-    
+    axis_out_tvalid <= 1;
+    axis_out_tdata <= 1638;
+    counter <= counter +1;
 
-    
 end
 
 endmodule
