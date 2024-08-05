@@ -63,7 +63,7 @@ always @(posedge clk) begin
     end
 end
 
-// The output is set to each output for the packet length defined by the state machine. 
+// The output is set to each output for the packet length defined by the parameters
 
 always @* begin
     if(output_path==FSM_OUTPUT_AXIS1) begin 

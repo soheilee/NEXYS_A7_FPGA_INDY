@@ -1,5 +1,6 @@
 module header_adder #(
-    parameter DW=128
+    parameter DW=128,
+    parameter META_DATA_LENGTH = 1
 )
 (
     input                      clk, resetn,
@@ -29,9 +30,13 @@ module header_adder #(
 assign axis_in_tready = (resetn == 1);
 assign axis_in_meta_tready = (resetn == 1);
 
-localparam META_DATA_LENGTH = 1;
+
 reg [128:0]      counter;
-reg [2:0]      counter_md;
+reg [2:0]       counter_md;
+localparam PINGPONG_DATAFRAME = 0;
+localparam META_DATA = 1;
+localparam FRAME_COUNTER = 2;
+
 
 always @(posedge clk) begin
     if (resetn == 0) begin
@@ -41,25 +46,26 @@ always @(posedge clk) begin
     end
     else case(fsm_state)
 
-        0:  if (counter == FRAME_SIZE/PACKET_SIZE) begin
-                counter <= 0;
-                counter_md <=0;
-                fsm_state <=1;
-            end
-            else begin
-                counter <= counter +1;
-            end
-        1:  if (counter_md == META_DATA_LENGTH) begin
-                counter_md <= 0;
-                fsm_state <=2;
-            end
-            else begin
-                counter_md <= counter_md +1;
-            end
+
+        PINGPONG_DATAFRAME: if (counter == FRAME_SIZE/PACKET_SIZE) begin
+                                    counter <= 0;
+                                    counter_md <=0;
+                                    fsm_state <=1;
+                                end
+                                else begin
+                                    counter <= counter +1;
+                                end
+        META_DATA:          if (counter_md == META_DATA_LENGTH) begin
+                                counter_md <= 0;
+                                fsm_state <=2;
+                            end
+                            else begin
+                                counter_md <= counter_md +1;
+                            end
         
-        2:  begin
-                fsm_state <=0;
-            end
+        FRAME_COUNTER:      begin
+                                fsm_state <=0;
+                            end
 
     endcase
 end
@@ -70,28 +76,29 @@ always @* begin
     axis_out_tvalid = 0;
 
     case (fsm_state)
-        0: begin
-            if (axis_in_tvalid) begin
-                axis_out_tdata = axis_in_tdata;
-                axis_out_tvalid = axis_in_tvalid;
-            end
-        end
-        1: begin
-            if (axis_in_meta_tvalid) begin
-                axis_out_tdata = axis_in_meta_tdata;
-                axis_out_tvalid = axis_in_meta_tvalid;
-            end
-        end
+        PINGPONG_DATAFRAME: begin
+                                if (axis_in_tvalid) begin
+                                    axis_out_tdata = axis_in_tdata;
+                                    axis_out_tvalid = axis_in_tvalid;
+                                end
+                            end
 
-        2: begin
-                axis_out_tdata = packet_counter;
-                axis_out_tvalid = 1;
-        end
+        META_DATA:          begin
+                                if (axis_in_meta_tvalid) begin
+                                    axis_out_tdata = axis_in_meta_tdata;
+                                    axis_out_tvalid = axis_in_meta_tvalid;
+                                end
+                            end
 
-        default: begin
-            axis_out_tdata = 0;
-            axis_out_tvalid = 0;
-        end
+        FRAME_COUNTER:      begin
+                                    axis_out_tdata = packet_counter;
+                                    axis_out_tvalid = 1;
+                            end
+
+        default:            begin
+                                axis_out_tdata = 0;
+                                axis_out_tvalid = 0;
+                            end
     endcase
 end
 
