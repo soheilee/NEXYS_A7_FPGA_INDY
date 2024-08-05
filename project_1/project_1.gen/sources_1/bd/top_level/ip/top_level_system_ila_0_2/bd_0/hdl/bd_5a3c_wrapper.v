@@ -18,8 +18,6 @@ module bd_5a3c_wrapper
     SLOT_1_AXIS_tready,
     SLOT_1_AXIS_tvalid,
     clk,
-    probe0,
-    probe1,
     resetn);
   input [127:0]SLOT_0_AXIS_tdata;
   input [15:0]SLOT_0_AXIS_tkeep;
@@ -32,8 +30,6 @@ module bd_5a3c_wrapper
   input SLOT_1_AXIS_tready;
   input SLOT_1_AXIS_tvalid;
   input clk;
-  input [2:0]probe0;
-  input [2:0]probe1;
   input resetn;
 
   wire [127:0]SLOT_0_AXIS_tdata;
@@ -47,8 +43,6 @@ module bd_5a3c_wrapper
   wire SLOT_1_AXIS_tready;
   wire SLOT_1_AXIS_tvalid;
   wire clk;
-  wire [2:0]probe0;
-  wire [2:0]probe1;
   wire resetn;
 
   bd_5a3c bd_5a3c_i
@@ -63,7 +57,5 @@ module bd_5a3c_wrapper
         .SLOT_1_AXIS_tready(SLOT_1_AXIS_tready),
         .SLOT_1_AXIS_tvalid(SLOT_1_AXIS_tvalid),
         .clk(clk),
-        .probe0(probe0),
-        .probe1(probe1),
         .resetn(resetn));
 endmodule

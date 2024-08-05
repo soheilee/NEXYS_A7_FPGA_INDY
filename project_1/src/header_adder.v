@@ -5,7 +5,6 @@ module header_adder #(
 (
     input                      clk, resetn,
     input [128:0]          packet_counter,  //Counter for the path switch
-    output reg  [2:0]       fsm_state,
     input [31:0]            FRAME_SIZE,
     input [15:0]            PACKET_SIZE,
 
@@ -30,7 +29,7 @@ module header_adder #(
 assign axis_in_tready = (resetn == 1);
 assign axis_in_meta_tready = (resetn == 1);
 
-
+reg  [2:0]       fsm_state;
 reg [128:0]      counter;
 reg [2:0]       counter_md;
 localparam PINGPONG_DATAFRAME = 0;

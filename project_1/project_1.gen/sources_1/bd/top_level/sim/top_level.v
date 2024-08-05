@@ -1,7 +1,7 @@
 //Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
-//Date        : Mon Aug  5 10:33:46 2024
+//Date        : Mon Aug  5 10:46:58 2024
 //Host        : LUDMW030265 running 64-bit major release  (build 9200)
 //Command     : generate_target top_level.bd
 //Design      : top_level
@@ -32,120 +32,7 @@ module config_param_imp_9OME8
        (.dout(xlconstant_1_dout));
 endmodule
 
-module path0_imp_Z635H9
-   (FRAME_SIZE1,
-    PACKET_SIZE,
-    S_AXIS_tdata,
-    S_AXIS_tready,
-    S_AXIS_tvalid,
-    axis_in_tdata,
-    axis_in_tready,
-    axis_in_tvalid,
-    axis_out_tdata,
-    axis_out_tkeep,
-    axis_out_tlast,
-    axis_out_tready,
-    axis_out_tvalid,
-    clk,
-    fsm_state,
-    resetn);
-  input [31:0]FRAME_SIZE1;
-  input [15:0]PACKET_SIZE;
-  input [127:0]S_AXIS_tdata;
-  output S_AXIS_tready;
-  input S_AXIS_tvalid;
-  input [127:0]axis_in_tdata;
-  output axis_in_tready;
-  input axis_in_tvalid;
-  output [127:0]axis_out_tdata;
-  output [15:0]axis_out_tkeep;
-  output axis_out_tlast;
-  input axis_out_tready;
-  output axis_out_tvalid;
-  input clk;
-  output [2:0]fsm_state;
-  input resetn;
-
-  wire [31:0]FRAME_SIZE1_1;
-  wire [15:0]PACKET_SIZE_1;
-  wire [127:0]axis_data_fifo_0_M_AXIS1_TDATA;
-  wire axis_data_fifo_0_M_AXIS1_TREADY;
-  wire axis_data_fifo_0_M_AXIS1_TVALID;
-  wire [127:0]axis_data_fifo_0_M_AXIS_TDATA;
-  wire [15:0]axis_data_fifo_0_M_AXIS_TKEEP;
-  wire axis_data_fifo_0_M_AXIS_TLAST;
-  wire axis_data_fifo_0_M_AXIS_TREADY;
-  wire axis_data_fifo_0_M_AXIS_TVALID;
-  wire clk_wiz_clk_100mhz;
-  wire [127:0]data_switch_0_axis_out1_TDATA;
-  wire data_switch_0_axis_out1_TREADY;
-  wire data_switch_0_axis_out1_TVALID;
-  wire [2:0]header_adder_0_fsm_state;
-  wire [127:0]metadata_splitter_0_axis_out2_TDATA;
-  wire metadata_splitter_0_axis_out2_TREADY;
-  wire metadata_splitter_0_axis_out2_TVALID;
-  wire [127:0]packet_counter_0_axis_out_TDATA;
-  wire packet_counter_0_axis_out_TREADY;
-  wire packet_counter_0_axis_out_TVALID;
-  wire [128:0]packet_counter_0_packet_counter;
-  wire proc_sys_reset_0_peripheral_aresetn;
-
-  assign FRAME_SIZE1_1 = FRAME_SIZE1[31:0];
-  assign PACKET_SIZE_1 = PACKET_SIZE[15:0];
-  assign S_AXIS_tready = metadata_splitter_0_axis_out2_TREADY;
-  assign axis_data_fifo_0_M_AXIS_TREADY = axis_out_tready;
-  assign axis_in_tready = data_switch_0_axis_out1_TREADY;
-  assign axis_out_tdata[127:0] = axis_data_fifo_0_M_AXIS_TDATA;
-  assign axis_out_tkeep[15:0] = axis_data_fifo_0_M_AXIS_TKEEP;
-  assign axis_out_tlast = axis_data_fifo_0_M_AXIS_TLAST;
-  assign axis_out_tvalid = axis_data_fifo_0_M_AXIS_TVALID;
-  assign clk_wiz_clk_100mhz = clk;
-  assign data_switch_0_axis_out1_TDATA = axis_in_tdata[127:0];
-  assign data_switch_0_axis_out1_TVALID = axis_in_tvalid;
-  assign fsm_state[2:0] = header_adder_0_fsm_state;
-  assign metadata_splitter_0_axis_out2_TDATA = S_AXIS_tdata[127:0];
-  assign metadata_splitter_0_axis_out2_TVALID = S_AXIS_tvalid;
-  assign proc_sys_reset_0_peripheral_aresetn = resetn;
-  top_level_axis_data_fifo_0_0 axis_data_fifo_0
-       (.m_axis_tdata(axis_data_fifo_0_M_AXIS1_TDATA),
-        .m_axis_tready(axis_data_fifo_0_M_AXIS1_TREADY),
-        .m_axis_tvalid(axis_data_fifo_0_M_AXIS1_TVALID),
-        .s_axis_aclk(clk_wiz_clk_100mhz),
-        .s_axis_aresetn(proc_sys_reset_0_peripheral_aresetn),
-        .s_axis_tdata(metadata_splitter_0_axis_out2_TDATA),
-        .s_axis_tready(metadata_splitter_0_axis_out2_TREADY),
-        .s_axis_tvalid(metadata_splitter_0_axis_out2_TVALID));
-  top_level_header_adder_0_0 header_adder_0
-       (.FRAME_SIZE(FRAME_SIZE1_1),
-        .PACKET_SIZE(PACKET_SIZE_1),
-        .axis_in_meta_tdata(axis_data_fifo_0_M_AXIS1_TDATA),
-        .axis_in_meta_tready(axis_data_fifo_0_M_AXIS1_TREADY),
-        .axis_in_meta_tvalid(axis_data_fifo_0_M_AXIS1_TVALID),
-        .axis_in_tdata(packet_counter_0_axis_out_TDATA),
-        .axis_in_tready(packet_counter_0_axis_out_TREADY),
-        .axis_in_tvalid(packet_counter_0_axis_out_TVALID),
-        .axis_out_tdata(axis_data_fifo_0_M_AXIS_TDATA),
-        .axis_out_tkeep(axis_data_fifo_0_M_AXIS_TKEEP),
-        .axis_out_tlast(axis_data_fifo_0_M_AXIS_TLAST),
-        .axis_out_tready(axis_data_fifo_0_M_AXIS_TREADY),
-        .axis_out_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
-        .clk(clk_wiz_clk_100mhz),
-        .fsm_state(header_adder_0_fsm_state),
-        .packet_counter(packet_counter_0_packet_counter),
-        .resetn(proc_sys_reset_0_peripheral_aresetn));
-  top_level_packet_counter_0_0 packet_counter_0
-       (.axis_in_tdata(data_switch_0_axis_out1_TDATA),
-        .axis_in_tready(data_switch_0_axis_out1_TREADY),
-        .axis_in_tvalid(data_switch_0_axis_out1_TVALID),
-        .axis_out_tdata(packet_counter_0_axis_out_TDATA),
-        .axis_out_tready(packet_counter_0_axis_out_TREADY),
-        .axis_out_tvalid(packet_counter_0_axis_out_TVALID),
-        .clk(clk_wiz_clk_100mhz),
-        .packet_counter(packet_counter_0_packet_counter),
-        .resetn(proc_sys_reset_0_peripheral_aresetn));
-endmodule
-
-module path1_imp_148G30J
+module path_0_imp_PQ87BQ
    (FRAME_SIZE,
     PACKET_SIZE,
     S_AXIS_tdata,
@@ -160,7 +47,6 @@ module path1_imp_148G30J
     axis_out_tready,
     axis_out_tvalid,
     clk,
-    fsm_state,
     resetn);
   input [31:0]FRAME_SIZE;
   input [15:0]PACKET_SIZE;
@@ -176,11 +62,117 @@ module path1_imp_148G30J
   input axis_out_tready;
   output axis_out_tvalid;
   input clk;
-  output [2:0]fsm_state;
   input resetn;
 
-  wire [31:0]FRAME_SIZE_1;
-  wire [15:0]PACKET_SIZE_1;
+  wire [31:0]Net;
+  wire [127:0]axis_data_fifo_0_M_AXIS1_TDATA;
+  wire axis_data_fifo_0_M_AXIS1_TREADY;
+  wire axis_data_fifo_0_M_AXIS1_TVALID;
+  wire [127:0]axis_data_fifo_0_M_AXIS_TDATA;
+  wire [15:0]axis_data_fifo_0_M_AXIS_TKEEP;
+  wire axis_data_fifo_0_M_AXIS_TLAST;
+  wire axis_data_fifo_0_M_AXIS_TREADY;
+  wire axis_data_fifo_0_M_AXIS_TVALID;
+  wire clk_wiz_clk_100mhz;
+  wire [127:0]data_switch_0_axis_out1_TDATA;
+  wire data_switch_0_axis_out1_TREADY;
+  wire data_switch_0_axis_out1_TVALID;
+  wire [127:0]metadata_splitter_0_axis_out2_TDATA;
+  wire metadata_splitter_0_axis_out2_TREADY;
+  wire metadata_splitter_0_axis_out2_TVALID;
+  wire [127:0]packet_counter_0_axis_out_TDATA;
+  wire packet_counter_0_axis_out_TREADY;
+  wire packet_counter_0_axis_out_TVALID;
+  wire [128:0]packet_counter_0_packet_counter;
+  wire proc_sys_reset_0_peripheral_aresetn;
+  wire [15:0]xlconstant_0_dout;
+
+  assign Net = FRAME_SIZE[31:0];
+  assign S_AXIS_tready = metadata_splitter_0_axis_out2_TREADY;
+  assign axis_data_fifo_0_M_AXIS_TREADY = axis_out_tready;
+  assign axis_in_tready = data_switch_0_axis_out1_TREADY;
+  assign axis_out_tdata[127:0] = axis_data_fifo_0_M_AXIS_TDATA;
+  assign axis_out_tkeep[15:0] = axis_data_fifo_0_M_AXIS_TKEEP;
+  assign axis_out_tlast = axis_data_fifo_0_M_AXIS_TLAST;
+  assign axis_out_tvalid = axis_data_fifo_0_M_AXIS_TVALID;
+  assign clk_wiz_clk_100mhz = clk;
+  assign data_switch_0_axis_out1_TDATA = axis_in_tdata[127:0];
+  assign data_switch_0_axis_out1_TVALID = axis_in_tvalid;
+  assign metadata_splitter_0_axis_out2_TDATA = S_AXIS_tdata[127:0];
+  assign metadata_splitter_0_axis_out2_TVALID = S_AXIS_tvalid;
+  assign proc_sys_reset_0_peripheral_aresetn = resetn;
+  assign xlconstant_0_dout = PACKET_SIZE[15:0];
+  top_level_axis_data_fifo_0_0 axis_data_fifo_0
+       (.m_axis_tdata(axis_data_fifo_0_M_AXIS1_TDATA),
+        .m_axis_tready(axis_data_fifo_0_M_AXIS1_TREADY),
+        .m_axis_tvalid(axis_data_fifo_0_M_AXIS1_TVALID),
+        .s_axis_aclk(clk_wiz_clk_100mhz),
+        .s_axis_aresetn(proc_sys_reset_0_peripheral_aresetn),
+        .s_axis_tdata(metadata_splitter_0_axis_out2_TDATA),
+        .s_axis_tready(metadata_splitter_0_axis_out2_TREADY),
+        .s_axis_tvalid(metadata_splitter_0_axis_out2_TVALID));
+  top_level_header_adder_0_1 header_adder_0
+       (.FRAME_SIZE(Net),
+        .PACKET_SIZE(xlconstant_0_dout),
+        .axis_in_meta_tdata(axis_data_fifo_0_M_AXIS1_TDATA),
+        .axis_in_meta_tready(axis_data_fifo_0_M_AXIS1_TREADY),
+        .axis_in_meta_tvalid(axis_data_fifo_0_M_AXIS1_TVALID),
+        .axis_in_tdata(packet_counter_0_axis_out_TDATA),
+        .axis_in_tready(packet_counter_0_axis_out_TREADY),
+        .axis_in_tvalid(packet_counter_0_axis_out_TVALID),
+        .axis_out_tdata(axis_data_fifo_0_M_AXIS_TDATA),
+        .axis_out_tkeep(axis_data_fifo_0_M_AXIS_TKEEP),
+        .axis_out_tlast(axis_data_fifo_0_M_AXIS_TLAST),
+        .axis_out_tready(axis_data_fifo_0_M_AXIS_TREADY),
+        .axis_out_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
+        .clk(clk_wiz_clk_100mhz),
+        .packet_counter(packet_counter_0_packet_counter),
+        .resetn(proc_sys_reset_0_peripheral_aresetn));
+  top_level_packet_counter_0_0 packet_counter_0
+       (.axis_in_tdata(data_switch_0_axis_out1_TDATA),
+        .axis_in_tready(data_switch_0_axis_out1_TREADY),
+        .axis_in_tvalid(data_switch_0_axis_out1_TVALID),
+        .axis_out_tdata(packet_counter_0_axis_out_TDATA),
+        .axis_out_tready(packet_counter_0_axis_out_TREADY),
+        .axis_out_tvalid(packet_counter_0_axis_out_TVALID),
+        .clk(clk_wiz_clk_100mhz),
+        .packet_counter(packet_counter_0_packet_counter),
+        .resetn(proc_sys_reset_0_peripheral_aresetn));
+endmodule
+
+module path_1_imp_1DSOE94
+   (FRAME_SIZE,
+    PACKET_SIZE,
+    S_AXIS_tdata,
+    S_AXIS_tready,
+    S_AXIS_tvalid,
+    axis_in_tdata,
+    axis_in_tready,
+    axis_in_tvalid,
+    axis_out_tdata,
+    axis_out_tkeep,
+    axis_out_tlast,
+    axis_out_tready,
+    axis_out_tvalid,
+    clk,
+    resetn);
+  input [31:0]FRAME_SIZE;
+  input [15:0]PACKET_SIZE;
+  input [127:0]S_AXIS_tdata;
+  output S_AXIS_tready;
+  input S_AXIS_tvalid;
+  input [127:0]axis_in_tdata;
+  output axis_in_tready;
+  input axis_in_tvalid;
+  output [127:0]axis_out_tdata;
+  output [15:0]axis_out_tkeep;
+  output axis_out_tlast;
+  input axis_out_tready;
+  output axis_out_tvalid;
+  input clk;
+  input resetn;
+
+  wire [31:0]Net;
   wire [127:0]axis_data_fifo_1_M_AXIS_TDATA;
   wire axis_data_fifo_1_M_AXIS_TREADY;
   wire axis_data_fifo_1_M_AXIS_TVALID;
@@ -188,7 +180,6 @@ module path1_imp_148G30J
   wire [127:0]data_switch_0_axis_out2_TDATA;
   wire data_switch_0_axis_out2_TREADY;
   wire data_switch_0_axis_out2_TVALID;
-  wire [2:0]header_adder_1_fsm_state;
   wire [127:0]metadata_splitter_0_axis_out1_TDATA;
   wire [15:0]metadata_splitter_0_axis_out1_TKEEP;
   wire metadata_splitter_0_axis_out1_TLAST;
@@ -202,9 +193,9 @@ module path1_imp_148G30J
   wire packet_counter_1_axis_out_TVALID;
   wire [128:0]packet_counter_1_packet_counter;
   wire proc_sys_reset_0_peripheral_aresetn;
+  wire [15:0]xlconstant_0_dout;
 
-  assign FRAME_SIZE_1 = FRAME_SIZE[31:0];
-  assign PACKET_SIZE_1 = PACKET_SIZE[15:0];
+  assign Net = FRAME_SIZE[31:0];
   assign S_AXIS_tready = metadata_splitter_0_axis_out3_TREADY;
   assign axis_in_tready = data_switch_0_axis_out2_TREADY;
   assign axis_out_tdata[127:0] = metadata_splitter_0_axis_out1_TDATA;
@@ -214,11 +205,11 @@ module path1_imp_148G30J
   assign clk_wiz_clk_100mhz = clk;
   assign data_switch_0_axis_out2_TDATA = axis_in_tdata[127:0];
   assign data_switch_0_axis_out2_TVALID = axis_in_tvalid;
-  assign fsm_state[2:0] = header_adder_1_fsm_state;
   assign metadata_splitter_0_axis_out1_TREADY = axis_out_tready;
   assign metadata_splitter_0_axis_out3_TDATA = S_AXIS_tdata[127:0];
   assign metadata_splitter_0_axis_out3_TVALID = S_AXIS_tvalid;
   assign proc_sys_reset_0_peripheral_aresetn = resetn;
+  assign xlconstant_0_dout = PACKET_SIZE[15:0];
   top_level_axis_data_fifo_1_0 axis_data_fifo_1
        (.m_axis_tdata(axis_data_fifo_1_M_AXIS_TDATA),
         .m_axis_tready(axis_data_fifo_1_M_AXIS_TREADY),
@@ -228,9 +219,9 @@ module path1_imp_148G30J
         .s_axis_tdata(metadata_splitter_0_axis_out3_TDATA),
         .s_axis_tready(metadata_splitter_0_axis_out3_TREADY),
         .s_axis_tvalid(metadata_splitter_0_axis_out3_TVALID));
-  top_level_header_adder_1_0 header_adder_1
-       (.FRAME_SIZE(FRAME_SIZE_1),
-        .PACKET_SIZE(PACKET_SIZE_1),
+  top_level_header_adder_1_1 header_adder_1
+       (.FRAME_SIZE(Net),
+        .PACKET_SIZE(xlconstant_0_dout),
         .axis_in_meta_tdata(axis_data_fifo_1_M_AXIS_TDATA),
         .axis_in_meta_tready(axis_data_fifo_1_M_AXIS_TREADY),
         .axis_in_meta_tvalid(axis_data_fifo_1_M_AXIS_TVALID),
@@ -243,7 +234,6 @@ module path1_imp_148G30J
         .axis_out_tready(metadata_splitter_0_axis_out1_TREADY),
         .axis_out_tvalid(metadata_splitter_0_axis_out1_TVALID),
         .clk(clk_wiz_clk_100mhz),
-        .fsm_state(header_adder_1_fsm_state),
         .packet_counter(packet_counter_1_packet_counter),
         .resetn(proc_sys_reset_0_peripheral_aresetn));
   top_level_packet_counter_1_0 packet_counter_1
@@ -298,6 +288,7 @@ module top_level
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK100MHZ CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK100MHZ, CLK_DOMAIN top_level_clk_in1_0, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input CLK100MHZ;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.CPU_RESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.CPU_RESETN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input CPU_RESETN;
 
+  wire [31:0]Net;
   (* CONN_BUS_INFO = "axis_data_fifo_0_M_AXIS xilinx.com:interface:axis:1.0 None TDATA" *) (* DONT_TOUCH *) wire [127:0]axis_data_fifo_0_M_AXIS_TDATA;
   (* CONN_BUS_INFO = "axis_data_fifo_0_M_AXIS xilinx.com:interface:axis:1.0 None TKEEP" *) (* DONT_TOUCH *) wire [15:0]axis_data_fifo_0_M_AXIS_TKEEP;
   (* CONN_BUS_INFO = "axis_data_fifo_0_M_AXIS xilinx.com:interface:axis:1.0 None TLAST" *) (* DONT_TOUCH *) wire axis_data_fifo_0_M_AXIS_TLAST;
@@ -312,8 +303,6 @@ module top_level
   wire data_switch_0_axis_out2_TREADY;
   wire data_switch_0_axis_out2_TVALID;
   wire ext_reset_in_0_1;
-  wire [2:0]header_adder_0_fsm_state;
-  wire [2:0]header_adder_1_fsm_state;
   wire [127:0]meta_data_0_axis_out_TDATA;
   wire meta_data_0_axis_out_TREADY;
   wire meta_data_0_axis_out_TVALID;
@@ -335,13 +324,12 @@ module top_level
   wire start_0_1;
   wire [15:0]xlconstant_0_dout;
   wire [7:0]xlconstant_1_dout;
-  wire [31:0]xlconstant_2_dout;
 
   assign clk_in1_0_1 = CLK100MHZ;
   assign ext_reset_in_0_1 = CPU_RESETN;
   assign start_0_1 = BTNU;
   config_param_imp_9OME8 config_param
-       (.frame_size(xlconstant_2_dout),
+       (.frame_size(Net),
         .packet_size(xlconstant_0_dout),
         .pp_group(xlconstant_1_dout));
   top_level_data_consumer_0_0 data_consumer
@@ -396,8 +384,8 @@ module top_level
         .clk(clk_wiz_clk_100mhz),
         .resetn(proc_sys_reset_0_peripheral_aresetn),
         .start(start_0_1));
-  path0_imp_Z635H9 path0
-       (.FRAME_SIZE1(xlconstant_2_dout),
+  path_0_imp_PQ87BQ path_0
+       (.FRAME_SIZE(Net),
         .PACKET_SIZE(xlconstant_0_dout),
         .S_AXIS_tdata(metadata_splitter_0_axis_out2_TDATA),
         .S_AXIS_tready(metadata_splitter_0_axis_out2_TREADY),
@@ -411,10 +399,9 @@ module top_level
         .axis_out_tready(axis_data_fifo_0_M_AXIS_TREADY),
         .axis_out_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
         .clk(clk_wiz_clk_100mhz),
-        .fsm_state(header_adder_0_fsm_state),
         .resetn(proc_sys_reset_0_peripheral_aresetn));
-  path1_imp_148G30J path1
-       (.FRAME_SIZE(xlconstant_2_dout),
+  path_1_imp_1DSOE94 path_1
+       (.FRAME_SIZE(Net),
         .PACKET_SIZE(xlconstant_0_dout),
         .S_AXIS_tdata(metadata_splitter_0_axis_out3_TDATA),
         .S_AXIS_tready(metadata_splitter_0_axis_out3_TREADY),
@@ -428,7 +415,6 @@ module top_level
         .axis_out_tready(metadata_splitter_0_axis_out1_TREADY),
         .axis_out_tvalid(metadata_splitter_0_axis_out1_TVALID),
         .clk(clk_wiz_clk_100mhz),
-        .fsm_state(header_adder_1_fsm_state),
         .resetn(proc_sys_reset_0_peripheral_aresetn));
   source_100mhz_imp_MSWE0P source_100mhz
        (.CLK100MHZ(clk_in1_0_1),
@@ -447,7 +433,5 @@ module top_level
         .SLOT_1_AXIS_tready(metadata_splitter_0_axis_out1_TREADY),
         .SLOT_1_AXIS_tvalid(metadata_splitter_0_axis_out1_TVALID),
         .clk(clk_wiz_clk_100mhz),
-        .probe0(header_adder_0_fsm_state),
-        .probe1(header_adder_1_fsm_state),
         .resetn(1'b1));
 endmodule
