@@ -1,11 +1,11 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
--- Date        : Sun Aug  4 11:22:05 2024
+-- Date        : Mon Aug  5 09:46:00 2024
 -- Host        : LUDMW030265 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top top_level_packet_counter_1_0 -prefix
---               top_level_packet_counter_1_0_ top_level_packet_counter_0_0_sim_netlist.vhdl
--- Design      : top_level_packet_counter_0_0
+-- Command     : write_vhdl -force -mode funcsim
+--               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_packet_counter_1_0/top_level_packet_counter_1_0_sim_netlist.vhdl
+-- Design      : top_level_packet_counter_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7a100tcsg324-1
@@ -23,6 +23,8 @@ entity top_level_packet_counter_1_0_packet_counter is
     axis_in_tvalid : in STD_LOGIC;
     resetn : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of top_level_packet_counter_1_0_packet_counter : entity is "packet_counter";
 end top_level_packet_counter_1_0_packet_counter;
 
 architecture STRUCTURE of top_level_packet_counter_1_0_packet_counter is
@@ -2918,7 +2920,7 @@ entity top_level_packet_counter_1_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of top_level_packet_counter_1_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of top_level_packet_counter_1_0 : entity is "top_level_packet_counter_0_0,packet_counter,{}";
+  attribute CHECK_LICENSE_TYPE of top_level_packet_counter_1_0 : entity is "top_level_packet_counter_1_0,packet_counter,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of top_level_packet_counter_1_0 : entity is "yes";
   attribute IP_DEFINITION_SOURCE : string;

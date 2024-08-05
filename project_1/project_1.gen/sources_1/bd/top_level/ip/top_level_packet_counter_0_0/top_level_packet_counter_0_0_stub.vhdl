@@ -1,10 +1,10 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
--- Date        : Sun Aug  4 11:22:05 2024
+-- Date        : Mon Aug  5 09:46:00 2024
 -- Host        : LUDMW030265 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top top_level_packet_counter_0_0 -prefix
---               top_level_packet_counter_0_0_ top_level_packet_counter_0_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_packet_counter_0_0/top_level_packet_counter_0_0_stub.vhdl
 -- Design      : top_level_packet_counter_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a100tcsg324-1

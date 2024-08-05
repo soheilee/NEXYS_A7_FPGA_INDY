@@ -1,8 +1,5 @@
 module packet_counter #(
-parameter DW=128,
-    parameter PP_GROUP = 2,
-    parameter PACKET_SIZE = 2,
-    parameter FRAME_SIZE = 256
+        parameter DW=128
     )
 (
     input                      clk, resetn,

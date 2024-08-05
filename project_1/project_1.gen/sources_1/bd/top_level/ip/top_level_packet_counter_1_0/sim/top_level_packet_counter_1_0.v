@@ -89,10 +89,7 @@ output wire axis_out_tvalid;
 input wire axis_out_tready;
 
   packet_counter #(
-    .DW(128),
-    .PP_GROUP(2),
-    .PACKET_SIZE(2),
-    .FRAME_SIZE(256)
+    .DW(128)
   ) inst (
     .clk(clk),
     .resetn(resetn),

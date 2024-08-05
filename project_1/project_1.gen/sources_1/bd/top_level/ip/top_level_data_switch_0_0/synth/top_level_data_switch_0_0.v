@@ -52,12 +52,14 @@
 
 (* X_CORE_INFO = "data_switch,Vivado 2021.1.1" *)
 (* CHECK_LICENSE_TYPE = "top_level_data_switch_0_0,data_switch,{}" *)
-(* CORE_GENERATION_INFO = "top_level_data_switch_0_0,data_switch,{x_ipProduct=Vivado 2021.1.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=data_switch,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DW=128,PP_GROUP=2,PACKET_SIZE=2}" *)
+(* CORE_GENERATION_INFO = "top_level_data_switch_0_0,data_switch,{x_ipProduct=Vivado 2021.1.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=data_switch,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DW=128}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module top_level_data_switch_0_0 (
   clk,
   resetn,
+  PACKET_SIZE,
+  PP_GROUP,
   axis_in_tdata,
   axis_in_tvalid,
   axis_in_tready,
@@ -75,6 +77,8 @@ input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *)
 input wire resetn;
+input wire [15 : 0] PACKET_SIZE;
+input wire [7 : 0] PP_GROUP;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TDATA" *)
 input wire [127 : 0] axis_in_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TVALID" *)
@@ -98,12 +102,12 @@ output wire axis_out2_tvalid;
 input wire axis_out2_tready;
 
   data_switch #(
-    .DW(128),
-    .PP_GROUP(2),
-    .PACKET_SIZE(2)
+    .DW(128)
   ) inst (
     .clk(clk),
     .resetn(resetn),
+    .PACKET_SIZE(PACKET_SIZE),
+    .PP_GROUP(PP_GROUP),
     .axis_in_tdata(axis_in_tdata),
     .axis_in_tvalid(axis_in_tvalid),
     .axis_in_tready(axis_in_tready),

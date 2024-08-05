@@ -59,6 +59,8 @@ module top_level_header_adder_0_0 (
   resetn,
   packet_counter,
   fsm_state,
+  FRAME_SIZE,
+  PACKET_SIZE,
   axis_in_tdata,
   axis_in_tvalid,
   axis_in_tready,
@@ -80,6 +82,8 @@ input wire clk;
 input wire resetn;
 input wire [128 : 0] packet_counter;
 output wire [2 : 0] fsm_state;
+input wire [31 : 0] FRAME_SIZE;
+input wire [15 : 0] PACKET_SIZE;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TDATA" *)
 input wire [127 : 0] axis_in_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TVALID" *)
@@ -107,15 +111,14 @@ output wire axis_out_tlast;
 output wire [15 : 0] axis_out_tkeep;
 
   header_adder #(
-    .DW(128),
-    .PP_GROUP(2),
-    .PACKET_SIZE(2),
-    .FRAME_SIZE(256)
+    .DW(128)
   ) inst (
     .clk(clk),
     .resetn(resetn),
     .packet_counter(packet_counter),
     .fsm_state(fsm_state),
+    .FRAME_SIZE(FRAME_SIZE),
+    .PACKET_SIZE(PACKET_SIZE),
     .axis_in_tdata(axis_in_tdata),
     .axis_in_tvalid(axis_in_tvalid),
     .axis_in_tready(axis_in_tready),

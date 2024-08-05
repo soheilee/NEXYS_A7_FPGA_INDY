@@ -13,13 +13,12 @@
     
 */
 module data_switch# (
-    parameter DW=128,
-    parameter PP_GROUP = 2,
-    parameter PACKET_SIZE = 2
+    parameter DW=128
     )
 (
     input                      clk, resetn,
-    
+    input [15:0]               PACKET_SIZE,
+    input [7:0]                PP_GROUP,
 
     // The input stream
     input[DW-1:0]              axis_in_tdata,
