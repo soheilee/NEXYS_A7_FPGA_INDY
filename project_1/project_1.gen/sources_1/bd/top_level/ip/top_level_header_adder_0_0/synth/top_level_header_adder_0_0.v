@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "header_adder,Vivado 2021.1.1" *)
 (* CHECK_LICENSE_TYPE = "top_level_header_adder_0_0,header_adder,{}" *)
-(* CORE_GENERATION_INFO = "top_level_header_adder_0_0,header_adder,{x_ipProduct=Vivado 2021.1.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=header_adder,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DW=128}" *)
+(* CORE_GENERATION_INFO = "top_level_header_adder_0_0,header_adder,{x_ipProduct=Vivado 2021.1.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=header_adder,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,DW=128,META_DATA_LENGTH=1}" *)
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module top_level_header_adder_0_0 (
@@ -112,7 +112,8 @@ output wire axis_out_tlast;
 output wire [15 : 0] axis_out_tkeep;
 
   header_adder #(
-    .DW(128)
+    .DW(128),
+    .META_DATA_LENGTH(1)
   ) inst (
     .clk(clk),
     .resetn(resetn),

@@ -1,7 +1,7 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
-// Date        : Mon Aug  5 09:46:03 2024
+// Date        : Mon Aug  5 10:34:55 2024
 // Host        : LUDMW030265 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_header_adder_1_0/top_level_header_adder_1_0_sim_netlist.v
@@ -2369,7 +2369,7 @@ module top_level_header_adder_1_0_header_adder
         .I4(\counter_md_reg_n_0_[0] ),
         .I5(resetn),
         .O(\FSM_onehot_fsm_state[2]_i_1_n_0 ));
-  (* FSM_ENCODED_STATES = "iSTATE:001,iSTATE0:010,iSTATE1:100," *) 
+  (* FSM_ENCODED_STATES = "PINGPONG_DATAFRAME:001,META_DATA:010,FRAME_COUNTER:100," *) 
   FDRE #(
     .INIT(1'b1)) 
     \FSM_onehot_fsm_state_reg[0] 
@@ -2378,7 +2378,7 @@ module top_level_header_adder_1_0_header_adder
         .D(\FSM_onehot_fsm_state[0]_i_1_n_0 ),
         .Q(counter),
         .R(1'b0));
-  (* FSM_ENCODED_STATES = "iSTATE:001,iSTATE0:010,iSTATE1:100," *) 
+  (* FSM_ENCODED_STATES = "PINGPONG_DATAFRAME:001,META_DATA:010,FRAME_COUNTER:100," *) 
   FDRE #(
     .INIT(1'b0)) 
     \FSM_onehot_fsm_state_reg[1] 
@@ -2387,7 +2387,7 @@ module top_level_header_adder_1_0_header_adder
         .D(\FSM_onehot_fsm_state[1]_i_1_n_0 ),
         .Q(\FSM_onehot_fsm_state_reg[1]_0 ),
         .R(1'b0));
-  (* FSM_ENCODED_STATES = "iSTATE:001,iSTATE0:010,iSTATE1:100," *) 
+  (* FSM_ENCODED_STATES = "PINGPONG_DATAFRAME:001,META_DATA:010,FRAME_COUNTER:100," *) 
   FDRE #(
     .INIT(1'b0)) 
     \FSM_onehot_fsm_state_reg[2] 

@@ -50,21 +50,21 @@ always @(posedge clk) begin
         PINGPONG_DATAFRAME: if (counter == FRAME_SIZE/PACKET_SIZE) begin
                                     counter <= 0;
                                     counter_md <=0;
-                                    fsm_state <=1;
+                                    fsm_state <=META_DATA;
                                 end
                                 else begin
                                     counter <= counter +1;
                                 end
         META_DATA:          if (counter_md == META_DATA_LENGTH) begin
                                 counter_md <= 0;
-                                fsm_state <=2;
+                                fsm_state <=FRAME_COUNTER;
                             end
                             else begin
                                 counter_md <= counter_md +1;
                             end
         
         FRAME_COUNTER:      begin
-                                fsm_state <=0;
+                                fsm_state <=PINGPONG_DATAFRAME;
                             end
 
     endcase

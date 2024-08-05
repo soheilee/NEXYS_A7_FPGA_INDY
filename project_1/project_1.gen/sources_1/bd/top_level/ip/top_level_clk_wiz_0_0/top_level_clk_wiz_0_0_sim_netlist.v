@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
 // Date        : Tue Jul 30 11:06:19 2024
 // Host        : LUDMW030265 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_clk_wiz_0_0/top_level_clk_wiz_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top top_level_clk_wiz_0_0 -prefix
+//               top_level_clk_wiz_0_0_ top_level_clk_wiz_0_0_sim_netlist.v
 // Design      : top_level_clk_wiz_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,12 +22,12 @@ module top_level_clk_wiz_0_0
   wire clk_100mhz;
   (* IBUF_LOW_PWR *) wire clk_in1;
 
-  top_level_clk_wiz_0_0_clk_wiz inst
+  top_level_clk_wiz_0_0_top_level_clk_wiz_0_0_clk_wiz inst
        (.clk_100mhz(clk_100mhz),
         .clk_in1(clk_in1));
 endmodule
 
-module top_level_clk_wiz_0_0_clk_wiz
+module top_level_clk_wiz_0_0_top_level_clk_wiz_0_0_clk_wiz
    (clk_100mhz,
     clk_in1);
   output clk_100mhz;

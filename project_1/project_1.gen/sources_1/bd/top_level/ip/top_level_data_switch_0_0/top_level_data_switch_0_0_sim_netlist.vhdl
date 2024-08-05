@@ -1,10 +1,10 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
--- Date        : Mon Aug  5 09:46:05 2024
+-- Date        : Mon Aug  5 10:04:29 2024
 -- Host        : LUDMW030265 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_data_switch_0_0/top_level_data_switch_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top top_level_data_switch_0_0 -prefix
+--               top_level_data_switch_0_0_ top_level_data_switch_0_0_sim_netlist.vhdl
 -- Design      : top_level_data_switch_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -27,8 +27,6 @@ entity top_level_data_switch_0_0_data_switch is
     PACKET_SIZE : in STD_LOGIC_VECTOR ( 15 downto 0 );
     clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of top_level_data_switch_0_0_data_switch : entity is "data_switch";
 end top_level_data_switch_0_0_data_switch;
 
 architecture STRUCTURE of top_level_data_switch_0_0_data_switch is

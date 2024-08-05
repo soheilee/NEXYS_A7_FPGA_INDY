@@ -1,7 +1,7 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
--- Date        : Mon Aug  5 09:46:03 2024
+-- Date        : Mon Aug  5 10:34:55 2024
 -- Host        : LUDMW030265 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_header_adder_0_0/top_level_header_adder_0_0_sim_netlist.vhdl
@@ -2230,9 +2230,9 @@ architecture STRUCTURE of top_level_header_adder_0_0_header_adder is
   signal \NLW_counter_reg[128]_i_1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_counter_reg[128]_i_1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 1 );
   attribute FSM_ENCODED_STATES : string;
-  attribute FSM_ENCODED_STATES of \FSM_onehot_fsm_state_reg[0]\ : label is "iSTATE:001,iSTATE0:010,iSTATE1:100,";
-  attribute FSM_ENCODED_STATES of \FSM_onehot_fsm_state_reg[1]\ : label is "iSTATE:001,iSTATE0:010,iSTATE1:100,";
-  attribute FSM_ENCODED_STATES of \FSM_onehot_fsm_state_reg[2]\ : label is "iSTATE:001,iSTATE0:010,iSTATE1:100,";
+  attribute FSM_ENCODED_STATES of \FSM_onehot_fsm_state_reg[0]\ : label is "PINGPONG_DATAFRAME:001,META_DATA:010,FRAME_COUNTER:100,";
+  attribute FSM_ENCODED_STATES of \FSM_onehot_fsm_state_reg[1]\ : label is "PINGPONG_DATAFRAME:001,META_DATA:010,FRAME_COUNTER:100,";
+  attribute FSM_ENCODED_STATES of \FSM_onehot_fsm_state_reg[2]\ : label is "PINGPONG_DATAFRAME:001,META_DATA:010,FRAME_COUNTER:100,";
   attribute ADDER_THRESHOLD : integer;
   attribute ADDER_THRESHOLD of \counter_reg[0]_i_2\ : label is 11;
   attribute ADDER_THRESHOLD of \counter_reg[100]_i_1\ : label is 11;

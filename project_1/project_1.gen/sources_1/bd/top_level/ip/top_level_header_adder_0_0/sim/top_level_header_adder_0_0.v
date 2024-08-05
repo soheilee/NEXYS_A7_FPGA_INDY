@@ -111,7 +111,8 @@ output wire axis_out_tlast;
 output wire [15 : 0] axis_out_tkeep;
 
   header_adder #(
-    .DW(128)
+    .DW(128),
+    .META_DATA_LENGTH(1)
   ) inst (
     .clk(clk),
     .resetn(resetn),

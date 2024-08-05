@@ -1,10 +1,10 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
-// Date        : Mon Aug  5 09:46:05 2024
+// Date        : Mon Aug  5 10:04:29 2024
 // Host        : LUDMW030265 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_data_switch_0_0/top_level_data_switch_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top top_level_data_switch_0_0 -prefix
+//               top_level_data_switch_0_0_ top_level_data_switch_0_0_sim_netlist.v
 // Design      : top_level_data_switch_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,63 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "top_level_data_switch_0_0,data_switch,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "data_switch,Vivado 2021.1.1" *) 
-(* NotValidForBitStream *)
-module top_level_data_switch_0_0
-   (clk,
-    resetn,
-    PACKET_SIZE,
-    PP_GROUP,
-    axis_in_tdata,
-    axis_in_tvalid,
-    axis_in_tready,
-    axis_out1_tdata,
-    axis_out1_tvalid,
-    axis_out1_tready,
-    axis_out2_tdata,
-    axis_out2_tvalid,
-    axis_out2_tready);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_in:axis_out1:axis_out2, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input resetn;
-  input [15:0]PACKET_SIZE;
-  input [7:0]PP_GROUP;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TDATA" *) input [127:0]axis_in_tdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TVALID" *) input axis_in_tvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_in, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) output axis_in_tready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out1 TDATA" *) output [127:0]axis_out1_tdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out1 TVALID" *) output axis_out1_tvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out1 TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out1, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) input axis_out1_tready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out2 TDATA" *) output [127:0]axis_out2_tdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out2 TVALID" *) output axis_out2_tvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out2 TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out2, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) input axis_out2_tready;
-
-  wire [15:0]PACKET_SIZE;
-  wire [7:0]PP_GROUP;
-  wire [127:0]axis_in_tdata;
-  wire axis_in_tvalid;
-  wire [127:0]axis_out1_tdata;
-  wire axis_out1_tvalid;
-  wire [127:0]axis_out2_tdata;
-  wire axis_out2_tvalid;
-  wire clk;
-  wire resetn;
-
-  assign axis_in_tready = resetn;
-  top_level_data_switch_0_0_data_switch inst
-       (.PACKET_SIZE(PACKET_SIZE),
-        .PP_GROUP(PP_GROUP),
-        .axis_in_tdata(axis_in_tdata),
-        .axis_in_tvalid(axis_in_tvalid),
-        .axis_out1_tdata(axis_out1_tdata),
-        .axis_out1_tvalid(axis_out1_tvalid),
-        .axis_out2_tdata(axis_out2_tdata),
-        .axis_out2_tvalid(axis_out2_tvalid),
-        .clk(clk),
-        .resetn(resetn));
-endmodule
-
-(* ORIG_REF_NAME = "data_switch" *) 
 module top_level_data_switch_0_0_data_switch
    (axis_out1_tdata,
     axis_out2_tdata,
@@ -3129,6 +3072,62 @@ module top_level_data_switch_0_0_data_switch
         .D(output_path_i_1_n_0),
         .Q(output_path_reg_n_0),
         .R(1'b0));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "top_level_data_switch_0_0,data_switch,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "data_switch,Vivado 2021.1.1" *) 
+(* NotValidForBitStream *)
+module top_level_data_switch_0_0
+   (clk,
+    resetn,
+    PACKET_SIZE,
+    PP_GROUP,
+    axis_in_tdata,
+    axis_in_tvalid,
+    axis_in_tready,
+    axis_out1_tdata,
+    axis_out1_tvalid,
+    axis_out1_tready,
+    axis_out2_tdata,
+    axis_out2_tvalid,
+    axis_out2_tready);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_in:axis_out1:axis_out2, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input resetn;
+  input [15:0]PACKET_SIZE;
+  input [7:0]PP_GROUP;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TDATA" *) input [127:0]axis_in_tdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TVALID" *) input axis_in_tvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_in, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) output axis_in_tready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out1 TDATA" *) output [127:0]axis_out1_tdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out1 TVALID" *) output axis_out1_tvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out1 TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out1, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) input axis_out1_tready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out2 TDATA" *) output [127:0]axis_out2_tdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out2 TVALID" *) output axis_out2_tvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out2 TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out2, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) input axis_out2_tready;
+
+  wire [15:0]PACKET_SIZE;
+  wire [7:0]PP_GROUP;
+  wire [127:0]axis_in_tdata;
+  wire axis_in_tvalid;
+  wire [127:0]axis_out1_tdata;
+  wire axis_out1_tvalid;
+  wire [127:0]axis_out2_tdata;
+  wire axis_out2_tvalid;
+  wire clk;
+  wire resetn;
+
+  assign axis_in_tready = resetn;
+  top_level_data_switch_0_0_data_switch inst
+       (.PACKET_SIZE(PACKET_SIZE),
+        .PP_GROUP(PP_GROUP),
+        .axis_in_tdata(axis_in_tdata),
+        .axis_in_tvalid(axis_in_tvalid),
+        .axis_out1_tdata(axis_out1_tdata),
+        .axis_out1_tvalid(axis_out1_tvalid),
+        .axis_out2_tdata(axis_out2_tdata),
+        .axis_out2_tvalid(axis_out2_tvalid),
+        .clk(clk),
+        .resetn(resetn));
 endmodule
 `ifndef GLBL
 `define GLBL

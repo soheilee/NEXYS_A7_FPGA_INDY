@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Aug  5 09:45:02 2024" VIVADOVERSION="2021.1.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Aug  5 10:33:50 2024" VIVADOVERSION="2021.1.1">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a100t" NAME="top_level" PACKAGE="csg324" SPEEDGRADE="-1"/>
 
@@ -53,9 +53,9 @@
       <PORTS>
         <PORT DIR="O" LEFT="15" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="config_param_PACKET_SIZE_dout">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="data_switch" PORT="PACKET_SIZE"/>
             <CONNECTION INSTANCE="path1_header_adder_1" PORT="PACKET_SIZE"/>
             <CONNECTION INSTANCE="path0_header_adder_0" PORT="PACKET_SIZE"/>
+            <CONNECTION INSTANCE="data_switch" PORT="PACKET_SIZE"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -718,6 +718,7 @@
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="DW" VALUE="128"/>
+        <PARAMETER NAME="META_DATA_LENGTH" VALUE="1"/>
         <PARAMETER NAME="Component_Name" VALUE="top_level_header_adder_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -1107,6 +1108,7 @@
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="DW" VALUE="128"/>
+        <PARAMETER NAME="META_DATA_LENGTH" VALUE="1"/>
         <PARAMETER NAME="Component_Name" VALUE="top_level_header_adder_1_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -1949,7 +1951,6 @@
             <CONNECTION INSTANCE="data_consumer" PORT="clk"/>
             <CONNECTION INSTANCE="system_ila" PORT="clk"/>
             <CONNECTION INSTANCE="packet_gen" PORT="clk"/>
-            <CONNECTION INSTANCE="meta_data" PORT="clk"/>
             <CONNECTION INSTANCE="metadata_splitter" PORT="clk"/>
             <CONNECTION INSTANCE="path1_axis_data_fifo_1" PORT="s_axis_aclk"/>
             <CONNECTION INSTANCE="path1_packet_counter_1" PORT="clk"/>
@@ -1958,6 +1959,7 @@
             <CONNECTION INSTANCE="path0_packet_counter_0" PORT="clk"/>
             <CONNECTION INSTANCE="path0_header_adder_0" PORT="clk"/>
             <CONNECTION INSTANCE="data_switch" PORT="clk"/>
+            <CONNECTION INSTANCE="meta_data" PORT="clk"/>
             <CONNECTION INSTANCE="source_100mhz_proc_sys_reset_0" PORT="slowest_sync_clk"/>
           </CONNECTIONS>
         </PORT>
@@ -2005,7 +2007,6 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="data_consumer" PORT="resetn"/>
             <CONNECTION INSTANCE="packet_gen" PORT="resetn"/>
-            <CONNECTION INSTANCE="meta_data" PORT="resetn"/>
             <CONNECTION INSTANCE="metadata_splitter" PORT="resetn"/>
             <CONNECTION INSTANCE="path1_axis_data_fifo_1" PORT="s_axis_aresetn"/>
             <CONNECTION INSTANCE="path1_packet_counter_1" PORT="resetn"/>
@@ -2014,6 +2015,7 @@
             <CONNECTION INSTANCE="path0_packet_counter_0" PORT="resetn"/>
             <CONNECTION INSTANCE="path0_header_adder_0" PORT="resetn"/>
             <CONNECTION INSTANCE="data_switch" PORT="resetn"/>
+            <CONNECTION INSTANCE="meta_data" PORT="resetn"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
