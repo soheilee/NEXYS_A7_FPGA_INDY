@@ -58,7 +58,6 @@
 module top_level_data_switch_0_0 (
   clk,
   resetn,
-  counter_ps,
   axis_in_tdata,
   axis_in_tvalid,
   axis_in_tready,
@@ -76,7 +75,6 @@ input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *)
 input wire resetn;
-output wire [15 : 0] counter_ps;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TDATA" *)
 input wire [127 : 0] axis_in_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TVALID" *)
@@ -106,7 +104,6 @@ input wire axis_out2_tready;
   ) inst (
     .clk(clk),
     .resetn(resetn),
-    .counter_ps(counter_ps),
     .axis_in_tdata(axis_in_tdata),
     .axis_in_tvalid(axis_in_tvalid),
     .axis_in_tready(axis_in_tready),

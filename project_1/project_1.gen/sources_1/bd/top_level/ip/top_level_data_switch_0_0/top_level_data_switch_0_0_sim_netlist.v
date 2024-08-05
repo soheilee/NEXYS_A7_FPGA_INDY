@@ -1,7 +1,7 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
-// Date        : Sun Aug  4 10:18:45 2024
+// Date        : Mon Aug  5 09:14:08 2024
 // Host        : LUDMW030265 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_data_switch_0_0/top_level_data_switch_0_0_sim_netlist.v
@@ -18,7 +18,6 @@
 module top_level_data_switch_0_0
    (clk,
     resetn,
-    counter_ps,
     axis_in_tdata,
     axis_in_tvalid,
     axis_in_tready,
@@ -30,7 +29,6 @@ module top_level_data_switch_0_0
     axis_out2_tready);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_in:axis_out1:axis_out2, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, INSERT_VIP 0" *) input clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input resetn;
-  output [15:0]counter_ps;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TDATA" *) input [127:0]axis_in_tdata;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TVALID" *) input axis_in_tvalid;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_in, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) output axis_in_tready;
@@ -48,7 +46,6 @@ module top_level_data_switch_0_0
   wire [127:0]axis_out2_tdata;
   wire axis_out2_tvalid;
   wire clk;
-  wire [15:0]counter_ps;
   wire resetn;
 
   assign axis_in_tready = resetn;
@@ -60,7 +57,6 @@ module top_level_data_switch_0_0
         .axis_out2_tdata(axis_out2_tdata),
         .axis_out2_tvalid(axis_out2_tvalid),
         .clk(clk),
-        .counter_ps(counter_ps),
         .resetn(resetn));
 endmodule
 
@@ -69,7 +65,6 @@ module top_level_data_switch_0_0_data_switch
    (axis_out1_tdata,
     axis_out2_tdata,
     axis_out2_tvalid,
-    counter_ps,
     axis_out1_tvalid,
     resetn,
     axis_in_tdata,
@@ -78,7 +73,6 @@ module top_level_data_switch_0_0_data_switch
   output [127:0]axis_out1_tdata;
   output [127:0]axis_out2_tdata;
   output axis_out2_tvalid;
-  output [15:0]counter_ps;
   output axis_out1_tvalid;
   input resetn;
   input [127:0]axis_in_tdata;

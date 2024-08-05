@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# button, data_consumer, data_switch, header_adder, meta_data, packet_counter, packet_gen
+# data_consumer, data_switch, header_adder, header_adder, meta_data, metadata_splitter, packet_counter, packet_counter, packet_gen
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -233,18 +233,13 @@ proc create_root_design { parentCell } {
 
   # Create instance: axis_data_fifo_0, and set properties
   set axis_data_fifo_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_data_fifo:2.0 axis_data_fifo_0 ]
+  set_property -dict [ list \
+   CONFIG.FIFO_DEPTH {8192} \
+ ] $axis_data_fifo_0
 
-  # Create instance: button, and set properties
-  set block_name button
-  set block_cell_name button
-  if { [catch {set button [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $button eq "" } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
+  # Create instance: axis_data_fifo_1, and set properties
+  set axis_data_fifo_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_data_fifo:2.0 axis_data_fifo_1 ]
+
   # Create instance: data_consumer_0, and set properties
   set block_name data_consumer
   set block_cell_name data_consumer_0
@@ -278,6 +273,17 @@ proc create_root_design { parentCell } {
      return 1
    }
   
+  # Create instance: header_adder_1, and set properties
+  set block_name header_adder
+  set block_cell_name header_adder_1
+  if { [catch {set header_adder_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $header_adder_1 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: meta_data_0, and set properties
   set block_name meta_data
   set block_cell_name meta_data_0
@@ -289,6 +295,17 @@ proc create_root_design { parentCell } {
      return 1
    }
   
+  # Create instance: metadata_splitter_0, and set properties
+  set block_name metadata_splitter
+  set block_cell_name metadata_splitter_0
+  if { [catch {set metadata_splitter_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $metadata_splitter_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: packet_counter_0, and set properties
   set block_name packet_counter
   set block_cell_name packet_counter_0
@@ -296,6 +313,17 @@ proc create_root_design { parentCell } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $packet_counter_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: packet_counter_1, and set properties
+  set block_name packet_counter
+  set block_cell_name packet_counter_1
+  if { [catch {set packet_counter_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $packet_counter_1 eq "" } {
      catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
@@ -317,10 +345,10 @@ proc create_root_design { parentCell } {
   # Create instance: system_ila_0, and set properties
   set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
   set_property -dict [ list \
-   CONFIG.C_BRAM_CNT {7.5} \
+   CONFIG.C_BRAM_CNT {1} \
    CONFIG.C_MON_TYPE {MIX} \
    CONFIG.C_NUM_MONITOR_SLOTS {2} \
-   CONFIG.C_NUM_OF_PROBES {6} \
+   CONFIG.C_NUM_OF_PROBES {2} \
    CONFIG.C_SLOT {0} \
    CONFIG.C_SLOT_0_INTF_TYPE {xilinx.com:interface:axis_rtl:1.0} \
    CONFIG.C_SLOT_1_INTF_TYPE {xilinx.com:interface:axis_rtl:1.0} \
@@ -328,30 +356,31 @@ proc create_root_design { parentCell } {
  ] $system_ila_0
 
   # Create interface connections
-  connect_bd_intf_net -intf_net axis_data_fifo_0_M_AXIS [get_bd_intf_pins data_consumer_0/axis_rx1] [get_bd_intf_pins header_adder_0/axis_out1]
-connect_bd_intf_net -intf_net [get_bd_intf_nets axis_data_fifo_0_M_AXIS] [get_bd_intf_pins header_adder_0/axis_out1] [get_bd_intf_pins system_ila_0/SLOT_0_AXIS]
+  connect_bd_intf_net -intf_net axis_data_fifo_0_M_AXIS [get_bd_intf_pins data_consumer_0/axis_rx1] [get_bd_intf_pins header_adder_0/axis_out]
+connect_bd_intf_net -intf_net [get_bd_intf_nets axis_data_fifo_0_M_AXIS] [get_bd_intf_pins header_adder_0/axis_out] [get_bd_intf_pins system_ila_0/SLOT_0_AXIS]
   connect_bd_intf_net -intf_net axis_data_fifo_0_M_AXIS1 [get_bd_intf_pins axis_data_fifo_0/M_AXIS] [get_bd_intf_pins header_adder_0/axis_in_meta]
-  connect_bd_intf_net -intf_net data_switch_0_axis_out1 [get_bd_intf_pins data_switch_0/axis_out1] [get_bd_intf_pins packet_counter_0/axis_in1]
-  connect_bd_intf_net -intf_net data_switch_0_axis_out2 [get_bd_intf_pins data_switch_0/axis_out2] [get_bd_intf_pins packet_counter_0/axis_in2]
-  connect_bd_intf_net -intf_net meta_data_0_axis_out [get_bd_intf_pins axis_data_fifo_0/S_AXIS] [get_bd_intf_pins meta_data_0/axis_out]
-  connect_bd_intf_net -intf_net packet_counter_0_axis_out1 [get_bd_intf_pins header_adder_0/axis_in1] [get_bd_intf_pins packet_counter_0/axis_out1]
-  connect_bd_intf_net -intf_net packet_counter_0_axis_out2 [get_bd_intf_pins data_consumer_0/axis_rx2] [get_bd_intf_pins header_adder_0/axis_out2]
-connect_bd_intf_net -intf_net [get_bd_intf_nets packet_counter_0_axis_out2] [get_bd_intf_pins header_adder_0/axis_out2] [get_bd_intf_pins system_ila_0/SLOT_1_AXIS]
-  connect_bd_intf_net -intf_net packet_counter_0_axis_out3 [get_bd_intf_pins header_adder_0/axis_in2] [get_bd_intf_pins packet_counter_0/axis_out2]
+  connect_bd_intf_net -intf_net axis_data_fifo_1_M_AXIS [get_bd_intf_pins axis_data_fifo_1/M_AXIS] [get_bd_intf_pins header_adder_1/axis_in_meta]
+  connect_bd_intf_net -intf_net data_switch_0_axis_out1 [get_bd_intf_pins data_switch_0/axis_out1] [get_bd_intf_pins packet_counter_0/axis_in]
+  connect_bd_intf_net -intf_net data_switch_0_axis_out2 [get_bd_intf_pins data_switch_0/axis_out2] [get_bd_intf_pins packet_counter_1/axis_in]
+  connect_bd_intf_net -intf_net meta_data_0_axis_out [get_bd_intf_pins meta_data_0/axis_out] [get_bd_intf_pins metadata_splitter_0/axis_in]
+  connect_bd_intf_net -intf_net metadata_splitter_0_axis_out1 [get_bd_intf_pins data_consumer_0/axis_rx2] [get_bd_intf_pins header_adder_1/axis_out]
+connect_bd_intf_net -intf_net [get_bd_intf_nets metadata_splitter_0_axis_out1] [get_bd_intf_pins header_adder_1/axis_out] [get_bd_intf_pins system_ila_0/SLOT_1_AXIS]
+  connect_bd_intf_net -intf_net metadata_splitter_0_axis_out2 [get_bd_intf_pins axis_data_fifo_0/S_AXIS] [get_bd_intf_pins metadata_splitter_0/axis_out1]
+  connect_bd_intf_net -intf_net metadata_splitter_0_axis_out3 [get_bd_intf_pins axis_data_fifo_1/S_AXIS] [get_bd_intf_pins metadata_splitter_0/axis_out2]
+  connect_bd_intf_net -intf_net packet_counter_0_axis_out [get_bd_intf_pins header_adder_0/axis_in] [get_bd_intf_pins packet_counter_0/axis_out]
+  connect_bd_intf_net -intf_net packet_counter_1_axis_out [get_bd_intf_pins header_adder_1/axis_in] [get_bd_intf_pins packet_counter_1/axis_out]
   connect_bd_intf_net -intf_net packet_gen_0_axis_out [get_bd_intf_pins data_switch_0/axis_in] [get_bd_intf_pins packet_gen_0/axis_out]
 
   # Create port connections
-  connect_bd_net -net PIN_0_1 [get_bd_ports BTNU] [get_bd_pins button/PIN]
-  connect_bd_net -net button_Q [get_bd_pins button/Q] [get_bd_pins packet_gen_0/start]
   connect_bd_net -net clk_in1_0_1 [get_bd_ports CLK100MHZ] [get_bd_pins source_100mhz/CLK100MHZ]
-  connect_bd_net -net clk_wiz_clk_100mhz [get_bd_pins axis_data_fifo_0/s_axis_aclk] [get_bd_pins button/CLK] [get_bd_pins data_consumer_0/clk] [get_bd_pins data_switch_0/clk] [get_bd_pins header_adder_0/clk] [get_bd_pins meta_data_0/clk] [get_bd_pins packet_counter_0/clk] [get_bd_pins packet_gen_0/clk] [get_bd_pins source_100mhz/clk_100mhz] [get_bd_pins system_ila_0/clk]
-  connect_bd_net -net data_switch_0_counter_ps [get_bd_pins data_switch_0/counter_ps] [get_bd_pins system_ila_0/probe1]
+  connect_bd_net -net clk_wiz_clk_100mhz [get_bd_pins axis_data_fifo_0/s_axis_aclk] [get_bd_pins axis_data_fifo_1/s_axis_aclk] [get_bd_pins data_consumer_0/clk] [get_bd_pins data_switch_0/clk] [get_bd_pins header_adder_0/clk] [get_bd_pins header_adder_1/clk] [get_bd_pins meta_data_0/clk] [get_bd_pins metadata_splitter_0/clk] [get_bd_pins packet_counter_0/clk] [get_bd_pins packet_counter_1/clk] [get_bd_pins packet_gen_0/clk] [get_bd_pins source_100mhz/clk_100mhz] [get_bd_pins system_ila_0/clk]
   connect_bd_net -net ext_reset_in_0_1 [get_bd_ports CPU_RESETN] [get_bd_pins source_100mhz/CPU_RESETN]
-  connect_bd_net -net header_adder_0_counter [get_bd_pins header_adder_0/counter] [get_bd_pins system_ila_0/probe5]
-  connect_bd_net -net header_adder_0_counter_md [get_bd_pins header_adder_0/counter_md] [get_bd_pins system_ila_0/probe4]
-  connect_bd_net -net header_adder_0_fsm_state [get_bd_pins header_adder_0/fsm_state] [get_bd_pins system_ila_0/probe2]
-  connect_bd_net -net packet_counter_0_packet_counter [get_bd_pins header_adder_0/packet_counter] [get_bd_pins packet_counter_0/packet_counter] [get_bd_pins system_ila_0/probe0]
-  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins axis_data_fifo_0/s_axis_aresetn] [get_bd_pins data_consumer_0/resetn] [get_bd_pins data_switch_0/resetn] [get_bd_pins header_adder_0/resetn] [get_bd_pins meta_data_0/resetn] [get_bd_pins packet_counter_0/resetn] [get_bd_pins packet_gen_0/resetn] [get_bd_pins source_100mhz/peripheral_aresetn]
+  connect_bd_net -net header_adder_0_fsm_state [get_bd_pins header_adder_0/fsm_state] [get_bd_pins system_ila_0/probe0]
+  connect_bd_net -net header_adder_1_fsm_state [get_bd_pins header_adder_1/fsm_state] [get_bd_pins system_ila_0/probe1]
+  connect_bd_net -net packet_counter_0_packet_counter [get_bd_pins header_adder_0/packet_counter] [get_bd_pins packet_counter_0/packet_counter]
+  connect_bd_net -net packet_counter_1_packet_counter [get_bd_pins header_adder_1/packet_counter] [get_bd_pins packet_counter_1/packet_counter]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins axis_data_fifo_0/s_axis_aresetn] [get_bd_pins axis_data_fifo_1/s_axis_aresetn] [get_bd_pins data_consumer_0/resetn] [get_bd_pins data_switch_0/resetn] [get_bd_pins header_adder_0/resetn] [get_bd_pins header_adder_1/resetn] [get_bd_pins meta_data_0/resetn] [get_bd_pins metadata_splitter_0/resetn] [get_bd_pins packet_counter_0/resetn] [get_bd_pins packet_counter_1/resetn] [get_bd_pins packet_gen_0/resetn] [get_bd_pins source_100mhz/peripheral_aresetn]
+  connect_bd_net -net start_0_1 [get_bd_ports BTNU] [get_bd_pins packet_gen_0/start]
 
   # Create address segments
 

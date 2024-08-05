@@ -47,32 +47,61 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:module_ref:button:1.0
+// IP VLNV: xilinx.com:module_ref:packet_counter:1.0
 // IP Revision: 1
 
 `timescale 1ns/1ps
 
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
-module top_level_button_0_0 (
-  CLK,
-  PIN,
-  Q
+module top_level_packet_counter_1_0 (
+  clk,
+  resetn,
+  packet_counter,
+  axis_in_tdata,
+  axis_in_tvalid,
+  axis_in_tready,
+  axis_out_tdata,
+  axis_out_tvalid,
+  axis_out_tready
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK CLK" *)
-input wire CLK;
-input wire PIN;
-output wire Q;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_in:axis_out, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
+input wire clk;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *)
+input wire resetn;
+output wire [128 : 0] packet_counter;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TDATA" *)
+input wire [127 : 0] axis_in_tdata;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TVALID" *)
+input wire axis_in_tvalid;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_in, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TREADY" *)
+output wire axis_in_tready;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TDATA" *)
+output wire [127 : 0] axis_out_tdata;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TVALID" *)
+output wire axis_out_tvalid;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TREADY" *)
+input wire axis_out_tready;
 
-  button #(
-    .ACTIVE_STATE(1),
-    .CLOCKS_PER_USEC(100),
-    .DEBOUNCE_MSEC(10)
+  packet_counter #(
+    .DW(128),
+    .PP_GROUP(2),
+    .PACKET_SIZE(2),
+    .FRAME_SIZE(256)
   ) inst (
-    .CLK(CLK),
-    .PIN(PIN),
-    .Q(Q)
+    .clk(clk),
+    .resetn(resetn),
+    .packet_counter(packet_counter),
+    .axis_in_tdata(axis_in_tdata),
+    .axis_in_tvalid(axis_in_tvalid),
+    .axis_in_tready(axis_in_tready),
+    .axis_out_tdata(axis_out_tdata),
+    .axis_out_tvalid(axis_out_tvalid),
+    .axis_out_tready(axis_out_tready)
   );
 endmodule

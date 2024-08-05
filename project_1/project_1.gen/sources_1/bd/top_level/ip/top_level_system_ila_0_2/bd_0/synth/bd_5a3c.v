@@ -21,10 +21,6 @@ module bd_5a3c
     clk,
     probe0,
     probe1,
-    probe2,
-    probe3,
-    probe4,
-    probe5,
     resetn);
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 SLOT_0_AXIS TDATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME SLOT_0_AXIS, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, FREQ_HZ 100000000, HAS_TKEEP 1, HAS_TLAST 1, HAS_TREADY 1, HAS_TSTRB 0, INSERT_VIP 0, LAYERED_METADATA undef, PHASE 0.0, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0" *) input [127:0]SLOT_0_AXIS_tdata;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 SLOT_0_AXIS TKEEP" *) input [15:0]SLOT_0_AXIS_tkeep;
@@ -37,12 +33,8 @@ module bd_5a3c
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 SLOT_1_AXIS TREADY" *) input SLOT_1_AXIS_tready;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 SLOT_1_AXIS TVALID" *) input SLOT_1_AXIS_tvalid;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_BUSIF SLOT_0_AXIS:SLOT_1_AXIS, ASSOCIATED_RESET resetn, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) input clk;
-  input [128:0]probe0;
-  input [15:0]probe1;
-  input [2:0]probe2;
-  input [2:0]probe3;
-  input [2:0]probe4;
-  input [128:0]probe5;
+  input [2:0]probe0;
+  input [2:0]probe1;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RESETN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RESETN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input resetn;
 
   wire [127:0]Conn1_TDATA;
@@ -66,12 +58,8 @@ module bd_5a3c
   wire net_slot_1_axis_tlast;
   wire net_slot_1_axis_tready;
   wire net_slot_1_axis_tvalid;
-  wire [128:0]probe0_1;
-  wire [15:0]probe1_1;
-  wire [2:0]probe2_1;
-  wire [2:0]probe3_1;
-  wire [2:0]probe4_1;
-  wire [128:0]probe5_1;
+  wire [2:0]probe0_1;
+  wire [2:0]probe1_1;
   wire resetn_1;
 
   assign Conn1_TDATA = SLOT_1_AXIS_tdata[127:0];
@@ -85,12 +73,8 @@ module bd_5a3c
   assign Conn_TREADY = SLOT_0_AXIS_tready;
   assign Conn_TVALID = SLOT_0_AXIS_tvalid;
   assign clk_1 = clk;
-  assign probe0_1 = probe0[128:0];
-  assign probe1_1 = probe1[15:0];
-  assign probe2_1 = probe2[2:0];
-  assign probe3_1 = probe3[2:0];
-  assign probe4_1 = probe4[2:0];
-  assign probe5_1 = probe5[128:0];
+  assign probe0_1 = probe0[2:0];
+  assign probe1_1 = probe1[2:0];
   assign resetn_1 = resetn;
   bd_5a3c_g_inst_0 g_inst
        (.aclk(clk_1),
@@ -119,18 +103,14 @@ module bd_5a3c
        (.clk(clk_1),
         .probe0(probe0_1),
         .probe1(probe1_1),
-        .probe10(net_slot_0_axis_tlast),
-        .probe11(net_slot_1_axis_tdata),
-        .probe12(net_slot_1_axis_tkeep),
-        .probe13(net_slot_1_axis_tvalid),
-        .probe14(net_slot_1_axis_tready),
-        .probe15(net_slot_1_axis_tlast),
-        .probe2(probe2_1),
-        .probe3(probe3_1[0]),
-        .probe4(probe4_1),
-        .probe5(probe5_1),
-        .probe6(net_slot_0_axis_tdata),
-        .probe7(net_slot_0_axis_tkeep),
-        .probe8(net_slot_0_axis_tvalid),
-        .probe9(net_slot_0_axis_tready));
+        .probe10(net_slot_1_axis_tready),
+        .probe11(net_slot_1_axis_tlast),
+        .probe2(net_slot_0_axis_tdata),
+        .probe3(net_slot_0_axis_tkeep),
+        .probe4(net_slot_0_axis_tvalid),
+        .probe5(net_slot_0_axis_tready),
+        .probe6(net_slot_0_axis_tlast),
+        .probe7(net_slot_1_axis_tdata),
+        .probe8(net_slot_1_axis_tkeep),
+        .probe9(net_slot_1_axis_tvalid));
 endmodule

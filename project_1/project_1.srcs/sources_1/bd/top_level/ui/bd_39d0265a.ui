@@ -7,44 +7,48 @@
    "No Loops_ExpandedHierarchyInLayout":"",
    "No Loops_Layout":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
 #  -string -flagsOSRD
-preplace port port-id_CPU_RESETN -pg 1 -lvl 0 -x 0 -y 110 -defaultsOSRD
-preplace port port-id_CLK100MHZ -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
-preplace port port-id_BTNU -pg 1 -lvl 0 -x 0 -y 160 -defaultsOSRD
-preplace inst packet_gen_0 -pg 1 -lvl 3 -x 610 -y 140 -swap {0 1 2 3 4 5 6 8 7} -defaultsOSRD -pinDir axis_out right -pinY axis_out 0R -pinDir clk left -pinY clk 0L -pinDir resetn left -pinY resetn 40L -pinDir start left -pinY start 20L
-preplace inst button -pg 1 -lvl 2 -x 420 -y 140 -defaultsOSRD -pinDir CLK left -pinY CLK 0L -pinDir PIN left -pinY PIN 20L -pinDir Q right -pinY Q 20R
-preplace inst packet_counter_0 -pg 1 -lvl 5 -x 1190 -y 60 -defaultsOSRD -pinDir axis_in1 left -pinY axis_in1 0L -pinDir axis_in2 left -pinY axis_in2 20L -pinDir axis_out1 right -pinY axis_out1 20R -pinDir axis_out2 right -pinY axis_out2 40R -pinDir clk left -pinY clk 40L -pinDir resetn left -pinY resetn 60L -pinBusDir packet_counter right -pinBusY packet_counter 60R
-preplace inst source_100mhz -pg 1 -lvl 1 -x 170 -y 80 -swap {0 3 2 1} -defaultsOSRD -pinDir clk_100mhz right -pinY clk_100mhz 0R -pinDir CPU_RESETN left -pinY CPU_RESETN 30L -pinBusDir peripheral_aresetn right -pinBusY peripheral_aresetn 30R -pinDir CLK100MHZ left -pinY CLK100MHZ 0L
-preplace inst data_consumer_0 -pg 1 -lvl 7 -x 1890 -y 520 -defaultsOSRD -pinDir axis_rx1 left -pinY axis_rx1 0L -pinDir axis_rx2 left -pinY axis_rx2 20L -pinDir clk left -pinY clk 40L -pinDir resetn left -pinY resetn 60L
-preplace inst system_ila_0 -pg 1 -lvl 7 -x 1890 -y 240 -swap {0 1 2 3 4 5 6 7 8 9 10 11 19 15 18 17 12 16 13 14} -defaultsOSRD -pinDir SLOT_0_AXIS left -pinY SLOT_0_AXIS 0L -pinDir SLOT_1_AXIS left -pinY SLOT_1_AXIS 20L -pinDir clk left -pinY clk 180L -pinDir resetn left -pinY resetn 100L -pinBusDir probe0 left -pinBusY probe0 160L -pinBusDir probe1 left -pinBusY probe1 140L -pinBusDir probe2 left -pinBusY probe2 40L -pinBusDir probe3 left -pinBusY probe3 120L -pinBusDir probe4 left -pinBusY probe4 60L -pinBusDir probe5 left -pinBusY probe5 80L
-preplace inst data_switch_0 -pg 1 -lvl 4 -x 880 -y 60 -defaultsOSRD -pinDir axis_in left -pinY axis_in 80L -pinDir axis_out1 right -pinY axis_out1 0R -pinDir axis_out2 right -pinY axis_out2 20R -pinDir clk left -pinY clk 100L -pinDir resetn left -pinY resetn 120L -pinBusDir counter_ps right -pinBusY counter_ps 120R
-preplace inst meta_data_0 -pg 1 -lvl 4 -x 880 -y 300 -defaultsOSRD -pinDir axis_out right -pinY axis_out 0R -pinDir clk left -pinY clk 0L -pinDir resetn left -pinY resetn 20L
-preplace inst axis_data_fifo_0 -pg 1 -lvl 5 -x 1190 -y 260 -swap {0 1 2 3 4 5 6 7 9 8} -defaultsOSRD -pinDir S_AXIS left -pinY S_AXIS 40L -pinDir M_AXIS right -pinY M_AXIS 0R -pinDir s_axis_aresetn left -pinY s_axis_aresetn 80L -pinDir s_axis_aclk left -pinY s_axis_aclk 60L
-preplace inst header_adder_0 -pg 1 -lvl 6 -x 1570 -y 80 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 25 26 24 27 29 28} -defaultsOSRD -pinDir axis_in1 left -pinY axis_in1 0L -pinDir axis_in2 left -pinY axis_in2 20L -pinDir axis_in_meta left -pinY axis_in_meta 180L -pinDir axis_out1 right -pinY axis_out1 160R -pinDir axis_out2 right -pinY axis_out2 180R -pinDir clk left -pinY clk 220L -pinDir resetn left -pinY resetn 240L -pinBusDir packet_counter left -pinBusY packet_counter 200L -pinBusDir fsm_state right -pinBusY fsm_state 200R -pinBusDir counter right -pinBusY counter 240R -pinBusDir counter_md right -pinBusY counter_md 220R
-preplace netloc PIN_0_1 1 0 2 NJ 160 NJ
-preplace netloc button_Q 1 2 1 N 160
-preplace netloc clk_in1_0_1 1 0 1 NJ 80
-preplace netloc clk_wiz_clk_100mhz 1 1 6 340 80 500 80 740 240 1020 200 1340 420 1740
-preplace netloc ext_reset_in_0_1 1 0 1 NJ 110
-preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 6 320J 220 500 240 720 380 1040 400 1360 580 NJ
-preplace netloc packet_counter_0_packet_counter 1 5 2 1400 400 N
-preplace netloc data_switch_0_counter_ps 1 4 3 NJ 180 1380J 380 N
-preplace netloc header_adder_0_fsm_state 1 6 1 N 280
-preplace netloc header_adder_0_counter_md 1 6 1 N 300
-preplace netloc header_adder_0_counter 1 6 1 N 320
-preplace netloc axis_data_fifo_0_M_AXIS 1 6 1 1780 240n
-preplace netloc data_switch_0_axis_out1 1 4 1 N 60
-preplace netloc data_switch_0_axis_out2 1 4 1 N 80
-preplace netloc packet_gen_0_axis_out 1 3 1 N 140
-preplace netloc packet_counter_0_axis_out2 1 6 1 1760 260n
-preplace netloc meta_data_0_axis_out 1 4 1 N 300
-preplace netloc packet_counter_0_axis_out1 1 5 1 N 80
-preplace netloc packet_counter_0_axis_out3 1 5 1 N 100
-preplace netloc axis_data_fifo_0_M_AXIS1 1 5 1 N 260
-levelinfo -pg 1 0 170 420 610 880 1190 1570 1890 1990
-pagesize -pg 1 -db -bbox -sgen -130 0 1990 640
+preplace port port-id_CPU_RESETN -pg 1 -lvl 0 -x 0 -y 90 -defaultsOSRD
+preplace port port-id_CLK100MHZ -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
+preplace port port-id_BTNU -pg 1 -lvl 0 -x 0 -y 250 -defaultsOSRD
+preplace inst source_100mhz -pg 1 -lvl 1 -x 170 -y 60 -swap {0 3 2 1} -defaultsOSRD -pinDir clk_100mhz right -pinY clk_100mhz 0R -pinDir CPU_RESETN left -pinY CPU_RESETN 30L -pinBusDir peripheral_aresetn right -pinBusY peripheral_aresetn 20R -pinDir CLK100MHZ left -pinY CLK100MHZ 0L
+preplace inst data_consumer_0 -pg 1 -lvl 6 -x 1670 -y 330 -swap {0 1 2 3 4 5 6 7 8 9 10 11 13 12} -defaultsOSRD -pinDir axis_rx1 left -pinY axis_rx1 0L -pinDir axis_rx2 left -pinY axis_rx2 20L -pinDir clk left -pinY clk 60L -pinDir resetn left -pinY resetn 40L
+preplace inst system_ila_0 -pg 1 -lvl 6 -x 1670 -y 490 -swap {0 1 2 3 4 5 6 7 8 9 10 11 13 14 12 15} -defaultsOSRD -pinDir SLOT_0_AXIS left -pinY SLOT_0_AXIS 0L -pinDir SLOT_1_AXIS left -pinY SLOT_1_AXIS 20L -pinDir clk left -pinY clk 60L -pinDir resetn left -pinY resetn 80L -pinBusDir probe0 left -pinBusY probe0 40L -pinBusDir probe1 left -pinBusY probe1 100L
+preplace inst packet_gen_0 -pg 1 -lvl 2 -x 450 -y 210 -defaultsOSRD -pinDir axis_out right -pinY axis_out 20R -pinDir clk left -pinY clk 0L -pinDir resetn left -pinY resetn 20L -pinDir start left -pinY start 40L
+preplace inst data_switch_0 -pg 1 -lvl 3 -x 700 -y 230 -defaultsOSRD -pinDir axis_in left -pinY axis_in 0L -pinDir axis_out1 right -pinY axis_out1 0R -pinDir axis_out2 right -pinY axis_out2 320R -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 40L
+preplace inst packet_counter_0 -pg 1 -lvl 4 -x 1010 -y 230 -defaultsOSRD -pinDir axis_in left -pinY axis_in 0L -pinDir axis_out right -pinY axis_out 0R -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 40L -pinBusDir packet_counter right -pinBusY packet_counter 20R
+preplace inst packet_counter_1 -pg 1 -lvl 4 -x 1010 -y 550 -defaultsOSRD -pinDir axis_in left -pinY axis_in 0L -pinDir axis_out right -pinY axis_out 0R -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 40L -pinBusDir packet_counter right -pinBusY packet_counter 60R
+preplace inst meta_data_0 -pg 1 -lvl 2 -x 450 -y 90 -defaultsOSRD -pinDir axis_out right -pinY axis_out 0R -pinDir clk left -pinY clk 0L -pinDir resetn left -pinY resetn 20L
+preplace inst axis_data_fifo_0 -pg 1 -lvl 4 -x 1010 -y 90 -swap {0 1 2 3 4 5 6 7 9 8} -defaultsOSRD -pinDir S_AXIS left -pinY S_AXIS 0L -pinDir M_AXIS right -pinY M_AXIS 40R -pinDir s_axis_aresetn left -pinY s_axis_aresetn 40L -pinDir s_axis_aclk left -pinY s_axis_aclk 20L
+preplace inst metadata_splitter_0 -pg 1 -lvl 3 -x 700 -y 90 -defaultsOSRD -pinDir axis_in left -pinY axis_in 0L -pinDir axis_out1 right -pinY axis_out1 0R -pinDir axis_out2 right -pinY axis_out2 40R -pinDir clk left -pinY clk 20L -pinDir resetn left -pinY resetn 40L
+preplace inst axis_data_fifo_1 -pg 1 -lvl 4 -x 1010 -y 410 -swap {0 1 2 3 4 5 6 7 9 8} -defaultsOSRD -pinDir S_AXIS left -pinY S_AXIS 0L -pinDir M_AXIS right -pinY M_AXIS 40R -pinDir s_axis_aresetn left -pinY s_axis_aresetn 40L -pinDir s_axis_aclk left -pinY s_axis_aclk 20L
+preplace inst header_adder_0 -pg 1 -lvl 5 -x 1340 -y 130 -swap {4 1 2 3 0 5 6 7 8 9 10 11 12 13 15 16 14 17} -defaultsOSRD -pinDir axis_in left -pinY axis_in 100L -pinDir axis_in_meta left -pinY axis_in_meta 0L -pinDir axis_out right -pinY axis_out 160R -pinDir clk left -pinY clk 160L -pinDir resetn left -pinY resetn 180L -pinBusDir packet_counter left -pinBusY packet_counter 120L -pinBusDir fsm_state right -pinBusY fsm_state 180R
+preplace inst header_adder_1 -pg 1 -lvl 5 -x 1340 -y 450 -swap {4 1 2 3 0 5 6 7 8 9 10 11 12 13 14 15 16 17} -defaultsOSRD -pinDir axis_in left -pinY axis_in 100L -pinDir axis_in_meta left -pinY axis_in_meta 0L -pinDir axis_out right -pinY axis_out 0R -pinDir clk left -pinY clk 120L -pinDir resetn left -pinY resetn 140L -pinBusDir packet_counter left -pinBusY packet_counter 160L -pinBusDir fsm_state right -pinBusY fsm_state 140R
+preplace netloc clk_in1_0_1 1 0 1 NJ 60
+preplace netloc clk_wiz_clk_100mhz 1 1 5 340 10 580 10 860 330 1160 390 1520
+preplace netloc ext_reset_in_0_1 1 0 1 NJ 90
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 5 320 30 560 30 840 350 1180 370 N
+preplace netloc start_0_1 1 0 2 NJ 250 NJ
+preplace netloc packet_counter_0_packet_counter 1 4 1 N 250
+preplace netloc packet_counter_1_packet_counter 1 4 1 N 610
+preplace netloc header_adder_0_fsm_state 1 5 1 1500 310n
+preplace netloc header_adder_1_fsm_state 1 5 1 N 590
+preplace netloc axis_data_fifo_0_M_AXIS 1 5 1 1540 290n
+preplace netloc metadata_splitter_0_axis_out1 1 5 1 1560 350n
+preplace netloc packet_gen_0_axis_out 1 2 1 N 230
+preplace netloc data_switch_0_axis_out1 1 3 1 N 230
+preplace netloc data_switch_0_axis_out2 1 3 1 N 550
+preplace netloc packet_counter_0_axis_out 1 4 1 N 230
+preplace netloc axis_data_fifo_0_M_AXIS1 1 4 1 N 130
+preplace netloc meta_data_0_axis_out 1 2 1 N 90
+preplace netloc metadata_splitter_0_axis_out2 1 3 1 N 90
+preplace netloc metadata_splitter_0_axis_out3 1 3 1 820 130n
+preplace netloc axis_data_fifo_1_M_AXIS 1 4 1 N 450
+preplace netloc packet_counter_1_axis_out 1 4 1 N 550
+levelinfo -pg 1 0 170 450 700 1010 1340 1670 1770
+pagesize -pg 1 -db -bbox -sgen -130 0 1770 670
 ",
-   "No Loops_ScaleFactor":"0.725472",
-   "No Loops_TopLeft":"-130,-172",
+   "No Loops_ScaleFactor":"0.904211",
+   "No Loops_TopLeft":"-131,-150",
    "guistr":"# # String gsaved with Nlview 7.0r6  2020-01-29 bk=1.5227 VDI=41 GEI=36 GUI=JA:10.0 non-TLS
 #  -string -flagsOSRD
 preplace inst clk_wiz -pg 1 -lvl 1 -x 150 -y -180 -defaultsOSRD

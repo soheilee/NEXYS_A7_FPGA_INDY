@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
 // Date        : Tue Jul 30 11:06:19 2024
 // Host        : LUDMW030265 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_packet_gen_0_0/top_level_packet_gen_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top top_level_packet_gen_0_0 -prefix
+//               top_level_packet_gen_0_0_ top_level_packet_gen_0_0_sim_netlist.v
 // Design      : top_level_packet_gen_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,61 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "top_level_packet_gen_0_0,packet_gen,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "packet_gen,Vivado 2021.1.1" *) 
-(* NotValidForBitStream *)
-module top_level_packet_gen_0_0
-   (clk,
-    resetn,
-    start,
-    axis_out_tdata,
-    axis_out_tkeep,
-    axis_out_tlast,
-    axis_out_tvalid,
-    axis_out_tready);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_out, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input resetn;
-  input start;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TDATA" *) output [127:0]axis_out_tdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TKEEP" *) output [15:0]axis_out_tkeep;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TLAST" *) output axis_out_tlast;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TVALID" *) output axis_out_tvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) input axis_out_tready;
-
-  wire \<const1> ;
-  wire [15:0]\^axis_out_tdata ;
-  wire [15:1]\^axis_out_tkeep ;
-  wire axis_out_tlast;
-  wire axis_out_tready;
-  wire axis_out_tvalid;
-  wire clk;
-  wire resetn;
-  wire start;
-
-  assign axis_out_tdata[127:112] = \^axis_out_tdata [15:0];
-  assign axis_out_tdata[111:96] = \^axis_out_tdata [15:0];
-  assign axis_out_tdata[95:80] = \^axis_out_tdata [15:0];
-  assign axis_out_tdata[79:64] = \^axis_out_tdata [15:0];
-  assign axis_out_tdata[63:48] = \^axis_out_tdata [15:0];
-  assign axis_out_tdata[47:32] = \^axis_out_tdata [15:0];
-  assign axis_out_tdata[31:16] = \^axis_out_tdata [15:0];
-  assign axis_out_tdata[15:0] = \^axis_out_tdata [15:0];
-  assign axis_out_tkeep[15:1] = \^axis_out_tkeep [15:1];
-  assign axis_out_tkeep[0] = \<const1> ;
-  VCC VCC
-       (.P(\<const1> ));
-  top_level_packet_gen_0_0_packet_gen inst
-       (.axis_out_tdata(\^axis_out_tdata ),
-        .axis_out_tkeep(\^axis_out_tkeep ),
-        .axis_out_tlast(axis_out_tlast),
-        .axis_out_tready(axis_out_tready),
-        .axis_out_tvalid(axis_out_tvalid),
-        .clk(clk),
-        .resetn(resetn),
-        .start(start));
-endmodule
-
-(* ORIG_REF_NAME = "packet_gen" *) 
 module top_level_packet_gen_0_0_packet_gen
    (axis_out_tlast,
     axis_out_tdata,
@@ -844,6 +789,60 @@ module top_level_packet_gen_0_0_packet_gen
         .D(\plen_idx[2]_i_1_n_0 ),
         .Q(plen_idx[2]),
         .R(1'b0));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "top_level_packet_gen_0_0,packet_gen,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "packet_gen,Vivado 2021.1.1" *) 
+(* NotValidForBitStream *)
+module top_level_packet_gen_0_0
+   (clk,
+    resetn,
+    start,
+    axis_out_tdata,
+    axis_out_tkeep,
+    axis_out_tlast,
+    axis_out_tvalid,
+    axis_out_tready);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_out, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input resetn;
+  input start;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TDATA" *) output [127:0]axis_out_tdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TKEEP" *) output [15:0]axis_out_tkeep;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TLAST" *) output axis_out_tlast;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TVALID" *) output axis_out_tvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *) input axis_out_tready;
+
+  wire \<const1> ;
+  wire [15:0]\^axis_out_tdata ;
+  wire [15:1]\^axis_out_tkeep ;
+  wire axis_out_tlast;
+  wire axis_out_tready;
+  wire axis_out_tvalid;
+  wire clk;
+  wire resetn;
+  wire start;
+
+  assign axis_out_tdata[127:112] = \^axis_out_tdata [15:0];
+  assign axis_out_tdata[111:96] = \^axis_out_tdata [15:0];
+  assign axis_out_tdata[95:80] = \^axis_out_tdata [15:0];
+  assign axis_out_tdata[79:64] = \^axis_out_tdata [15:0];
+  assign axis_out_tdata[63:48] = \^axis_out_tdata [15:0];
+  assign axis_out_tdata[47:32] = \^axis_out_tdata [15:0];
+  assign axis_out_tdata[31:16] = \^axis_out_tdata [15:0];
+  assign axis_out_tdata[15:0] = \^axis_out_tdata [15:0];
+  assign axis_out_tkeep[15:1] = \^axis_out_tkeep [15:1];
+  assign axis_out_tkeep[0] = \<const1> ;
+  VCC VCC
+       (.P(\<const1> ));
+  top_level_packet_gen_0_0_packet_gen inst
+       (.axis_out_tdata(\^axis_out_tdata ),
+        .axis_out_tkeep(\^axis_out_tkeep ),
+        .axis_out_tlast(axis_out_tlast),
+        .axis_out_tready(axis_out_tready),
+        .axis_out_tvalid(axis_out_tvalid),
+        .clk(clk),
+        .resetn(resetn),
+        .start(start));
 endmodule
 `ifndef GLBL
 `define GLBL

@@ -59,55 +59,35 @@ module top_level_packet_counter_0_0 (
   clk,
   resetn,
   packet_counter,
-  axis_in1_tdata,
-  axis_in1_tvalid,
-  axis_in1_tready,
-  axis_in2_tdata,
-  axis_in2_tvalid,
-  axis_in2_tready,
-  axis_out1_tdata,
-  axis_out1_tvalid,
-  axis_out1_tready,
-  axis_out2_tdata,
-  axis_out2_tvalid,
-  axis_out2_tready
+  axis_in_tdata,
+  axis_in_tvalid,
+  axis_in_tready,
+  axis_out_tdata,
+  axis_out_tvalid,
+  axis_out_tready
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_in1:axis_in2:axis_out1:axis_out2, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF axis_in:axis_out, ASSOCIATED_RESET resetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME resetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 resetn RST" *)
 input wire resetn;
 output wire [128 : 0] packet_counter;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in1 TDATA" *)
-input wire [127 : 0] axis_in1_tdata;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in1 TVALID" *)
-input wire axis_in1_tvalid;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_in1, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in1 TREADY" *)
-output wire axis_in1_tready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in2 TDATA" *)
-input wire [127 : 0] axis_in2_tdata;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in2 TVALID" *)
-input wire axis_in2_tvalid;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_in2, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in2 TREADY" *)
-output wire axis_in2_tready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out1 TDATA" *)
-output wire [127 : 0] axis_out1_tdata;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out1 TVALID" *)
-output wire axis_out1_tvalid;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out1, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out1 TREADY" *)
-input wire axis_out1_tready;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out2 TDATA" *)
-output wire [127 : 0] axis_out2_tdata;
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out2 TVALID" *)
-output wire axis_out2_tvalid;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out2, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out2 TREADY" *)
-input wire axis_out2_tready;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TDATA" *)
+input wire [127 : 0] axis_in_tdata;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TVALID" *)
+input wire axis_in_tvalid;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_in, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_in TREADY" *)
+output wire axis_in_tready;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TDATA" *)
+output wire [127 : 0] axis_out_tdata;
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TVALID" *)
+output wire axis_out_tvalid;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axis_out, TDATA_NUM_BYTES 16, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 0, FREQ_HZ 100000000, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 axis_out TREADY" *)
+input wire axis_out_tready;
 
   packet_counter #(
     .DW(128),
@@ -118,17 +98,11 @@ input wire axis_out2_tready;
     .clk(clk),
     .resetn(resetn),
     .packet_counter(packet_counter),
-    .axis_in1_tdata(axis_in1_tdata),
-    .axis_in1_tvalid(axis_in1_tvalid),
-    .axis_in1_tready(axis_in1_tready),
-    .axis_in2_tdata(axis_in2_tdata),
-    .axis_in2_tvalid(axis_in2_tvalid),
-    .axis_in2_tready(axis_in2_tready),
-    .axis_out1_tdata(axis_out1_tdata),
-    .axis_out1_tvalid(axis_out1_tvalid),
-    .axis_out1_tready(axis_out1_tready),
-    .axis_out2_tdata(axis_out2_tdata),
-    .axis_out2_tvalid(axis_out2_tvalid),
-    .axis_out2_tready(axis_out2_tready)
+    .axis_in_tdata(axis_in_tdata),
+    .axis_in_tvalid(axis_in_tvalid),
+    .axis_in_tready(axis_in_tready),
+    .axis_out_tdata(axis_out_tdata),
+    .axis_out_tvalid(axis_out_tvalid),
+    .axis_out_tready(axis_out_tready)
   );
 endmodule

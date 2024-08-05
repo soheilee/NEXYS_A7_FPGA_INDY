@@ -19,7 +19,7 @@ module data_switch# (
     )
 (
     input                      clk, resetn,
-    output reg [15:0]          counter_ps,  //Counter for the path switch
+    
 
     // The input stream
     input[DW-1:0]              axis_in_tdata,
@@ -48,7 +48,7 @@ assign axis_in_tready = (resetn == 1);
 reg output_path;
 localparam FSM_OUTPUT_AXIS1 = 1;
 localparam FSM_OUTPUT_AXIS2  = 0;
-
+reg [15:0]          counter_ps;  //Counter for the path switch
 always @(posedge clk) begin
     if (resetn == 0) begin
         counter_ps <=0;

@@ -1,7 +1,7 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
--- Date        : Sun Aug  4 10:18:45 2024
+-- Date        : Mon Aug  5 09:14:08 2024
 -- Host        : LUDMW030265 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_data_switch_0_0/top_level_data_switch_0_0_sim_netlist.vhdl
@@ -19,7 +19,6 @@ entity top_level_data_switch_0_0_data_switch is
     axis_out1_tdata : out STD_LOGIC_VECTOR ( 127 downto 0 );
     axis_out2_tdata : out STD_LOGIC_VECTOR ( 127 downto 0 );
     axis_out2_tvalid : out STD_LOGIC;
-    counter_ps : out STD_LOGIC_VECTOR ( 15 downto 0 );
     axis_out1_tvalid : out STD_LOGIC;
     resetn : in STD_LOGIC;
     axis_in_tdata : in STD_LOGIC_VECTOR ( 127 downto 0 );
@@ -31,7 +30,7 @@ entity top_level_data_switch_0_0_data_switch is
 end top_level_data_switch_0_0_data_switch;
 
 architecture STRUCTURE of top_level_data_switch_0_0_data_switch is
-  signal \^counter_ps\ : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal counter_ps : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal \counter_ps[15]_i_3_n_0\ : STD_LOGIC;
   signal \counter_ps[15]_i_4_n_0\ : STD_LOGIC;
   signal \counter_ps[15]_i_5_n_0\ : STD_LOGIC;
@@ -454,7 +453,6 @@ architecture STRUCTURE of top_level_data_switch_0_0_data_switch is
   attribute ADDER_THRESHOLD of \counter_ps_reg[4]_i_2\ : label is 35;
   attribute ADDER_THRESHOLD of \counter_ps_reg[8]_i_2\ : label is 35;
 begin
-  counter_ps(15 downto 0) <= \^counter_ps\(15 downto 0);
 \axis_out1_tdata_reg[0]\: unisim.vcomponents.LDCE
     generic map(
       INIT => '0'
@@ -3425,7 +3423,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       INIT => X"1"
     )
         port map (
-      I0 => \^counter_ps\(0),
+      I0 => counter_ps(0),
       O => counter_ps_0(0)
     );
 \counter_ps[10]_i_1\: unisim.vcomponents.LUT5
@@ -3513,10 +3511,10 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       INIT => X"FFFE"
     )
         port map (
-      I0 => \^counter_ps\(5),
-      I1 => \^counter_ps\(4),
-      I2 => \^counter_ps\(7),
-      I3 => \^counter_ps\(6),
+      I0 => counter_ps(5),
+      I1 => counter_ps(4),
+      I2 => counter_ps(7),
+      I3 => counter_ps(6),
       O => \counter_ps[15]_i_3_n_0\
     );
 \counter_ps[15]_i_4\: unisim.vcomponents.LUT4
@@ -3524,10 +3522,10 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       INIT => X"FFF7"
     )
         port map (
-      I0 => \^counter_ps\(1),
-      I1 => \^counter_ps\(0),
-      I2 => \^counter_ps\(3),
-      I3 => \^counter_ps\(2),
+      I0 => counter_ps(1),
+      I1 => counter_ps(0),
+      I2 => counter_ps(3),
+      I3 => counter_ps(2),
       O => \counter_ps[15]_i_4_n_0\
     );
 \counter_ps[15]_i_5\: unisim.vcomponents.LUT4
@@ -3535,10 +3533,10 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       INIT => X"FFFE"
     )
         port map (
-      I0 => \^counter_ps\(13),
-      I1 => \^counter_ps\(12),
-      I2 => \^counter_ps\(15),
-      I3 => \^counter_ps\(14),
+      I0 => counter_ps(13),
+      I1 => counter_ps(12),
+      I2 => counter_ps(15),
+      I3 => counter_ps(14),
       O => \counter_ps[15]_i_5_n_0\
     );
 \counter_ps[15]_i_6\: unisim.vcomponents.LUT4
@@ -3546,10 +3544,10 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       INIT => X"FFFE"
     )
         port map (
-      I0 => \^counter_ps\(9),
-      I1 => \^counter_ps\(8),
-      I2 => \^counter_ps\(11),
-      I3 => \^counter_ps\(10),
+      I0 => counter_ps(9),
+      I1 => counter_ps(8),
+      I2 => counter_ps(11),
+      I3 => counter_ps(10),
       O => \counter_ps[15]_i_6_n_0\
     );
 \counter_ps[1]_i_1\: unisim.vcomponents.LUT5
@@ -3665,7 +3663,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(0),
-      Q => \^counter_ps\(0),
+      Q => counter_ps(0),
       R => p_0_in
     );
 \counter_ps_reg[10]\: unisim.vcomponents.FDRE
@@ -3673,7 +3671,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(10),
-      Q => \^counter_ps\(10),
+      Q => counter_ps(10),
       R => p_0_in
     );
 \counter_ps_reg[11]\: unisim.vcomponents.FDRE
@@ -3681,7 +3679,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(11),
-      Q => \^counter_ps\(11),
+      Q => counter_ps(11),
       R => p_0_in
     );
 \counter_ps_reg[12]\: unisim.vcomponents.FDRE
@@ -3689,7 +3687,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(12),
-      Q => \^counter_ps\(12),
+      Q => counter_ps(12),
       R => p_0_in
     );
 \counter_ps_reg[12]_i_2\: unisim.vcomponents.CARRY4
@@ -3702,14 +3700,14 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       CYINIT => '0',
       DI(3 downto 0) => B"0000",
       O(3 downto 0) => data0(12 downto 9),
-      S(3 downto 0) => \^counter_ps\(12 downto 9)
+      S(3 downto 0) => counter_ps(12 downto 9)
     );
 \counter_ps_reg[13]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
       CE => '1',
       D => counter_ps_0(13),
-      Q => \^counter_ps\(13),
+      Q => counter_ps(13),
       R => p_0_in
     );
 \counter_ps_reg[14]\: unisim.vcomponents.FDRE
@@ -3717,7 +3715,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(14),
-      Q => \^counter_ps\(14),
+      Q => counter_ps(14),
       R => p_0_in
     );
 \counter_ps_reg[15]\: unisim.vcomponents.FDRE
@@ -3725,7 +3723,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(15),
-      Q => \^counter_ps\(15),
+      Q => counter_ps(15),
       R => p_0_in
     );
 \counter_ps_reg[15]_i_7\: unisim.vcomponents.CARRY4
@@ -3739,14 +3737,14 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       O(3) => \NLW_counter_ps_reg[15]_i_7_O_UNCONNECTED\(3),
       O(2 downto 0) => data0(15 downto 13),
       S(3) => '0',
-      S(2 downto 0) => \^counter_ps\(15 downto 13)
+      S(2 downto 0) => counter_ps(15 downto 13)
     );
 \counter_ps_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
       CE => '1',
       D => counter_ps_0(1),
-      Q => \^counter_ps\(1),
+      Q => counter_ps(1),
       R => p_0_in
     );
 \counter_ps_reg[2]\: unisim.vcomponents.FDRE
@@ -3754,7 +3752,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(2),
-      Q => \^counter_ps\(2),
+      Q => counter_ps(2),
       R => p_0_in
     );
 \counter_ps_reg[3]\: unisim.vcomponents.FDRE
@@ -3762,7 +3760,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(3),
-      Q => \^counter_ps\(3),
+      Q => counter_ps(3),
       R => p_0_in
     );
 \counter_ps_reg[4]\: unisim.vcomponents.FDRE
@@ -3770,7 +3768,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(4),
-      Q => \^counter_ps\(4),
+      Q => counter_ps(4),
       R => p_0_in
     );
 \counter_ps_reg[4]_i_2\: unisim.vcomponents.CARRY4
@@ -3780,17 +3778,17 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       CO(2) => \counter_ps_reg[4]_i_2_n_1\,
       CO(1) => \counter_ps_reg[4]_i_2_n_2\,
       CO(0) => \counter_ps_reg[4]_i_2_n_3\,
-      CYINIT => \^counter_ps\(0),
+      CYINIT => counter_ps(0),
       DI(3 downto 0) => B"0000",
       O(3 downto 0) => data0(4 downto 1),
-      S(3 downto 0) => \^counter_ps\(4 downto 1)
+      S(3 downto 0) => counter_ps(4 downto 1)
     );
 \counter_ps_reg[5]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
       CE => '1',
       D => counter_ps_0(5),
-      Q => \^counter_ps\(5),
+      Q => counter_ps(5),
       R => p_0_in
     );
 \counter_ps_reg[6]\: unisim.vcomponents.FDRE
@@ -3798,7 +3796,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(6),
-      Q => \^counter_ps\(6),
+      Q => counter_ps(6),
       R => p_0_in
     );
 \counter_ps_reg[7]\: unisim.vcomponents.FDRE
@@ -3806,7 +3804,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(7),
-      Q => \^counter_ps\(7),
+      Q => counter_ps(7),
       R => p_0_in
     );
 \counter_ps_reg[8]\: unisim.vcomponents.FDRE
@@ -3814,7 +3812,7 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       C => clk,
       CE => '1',
       D => counter_ps_0(8),
-      Q => \^counter_ps\(8),
+      Q => counter_ps(8),
       R => p_0_in
     );
 \counter_ps_reg[8]_i_2\: unisim.vcomponents.CARRY4
@@ -3827,14 +3825,14 @@ axis_out2_tvalid_reg: unisim.vcomponents.LDCE
       CYINIT => '0',
       DI(3 downto 0) => B"0000",
       O(3 downto 0) => data0(8 downto 5),
-      S(3 downto 0) => \^counter_ps\(8 downto 5)
+      S(3 downto 0) => counter_ps(8 downto 5)
     );
 \counter_ps_reg[9]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
       CE => '1',
       D => counter_ps_0(9),
-      Q => \^counter_ps\(9),
+      Q => counter_ps(9),
       R => p_0_in
     );
 output_path_i_1: unisim.vcomponents.LUT6
@@ -3867,7 +3865,6 @@ entity top_level_data_switch_0_0 is
   port (
     clk : in STD_LOGIC;
     resetn : in STD_LOGIC;
-    counter_ps : out STD_LOGIC_VECTOR ( 15 downto 0 );
     axis_in_tdata : in STD_LOGIC_VECTOR ( 127 downto 0 );
     axis_in_tvalid : in STD_LOGIC;
     axis_in_tready : out STD_LOGIC;
@@ -3922,7 +3919,6 @@ inst: entity work.top_level_data_switch_0_0_data_switch
       axis_out2_tdata(127 downto 0) => axis_out2_tdata(127 downto 0),
       axis_out2_tvalid => axis_out2_tvalid,
       clk => clk,
-      counter_ps(15 downto 0) => counter_ps(15 downto 0),
       resetn => \^resetn\
     );
 end STRUCTURE;

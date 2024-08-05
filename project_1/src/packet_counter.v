@@ -10,29 +10,20 @@ parameter DW=128,
 
 
     // The input stream #1
-    input[DW-1:0]              axis_in1_tdata,
-    input                      axis_in1_tvalid,
-    output                     axis_in1_tready,
+    input[DW-1:0]              axis_in_tdata,
+    input                      axis_in_tvalid,
+    output                     axis_in_tready,
 
-    // The input stream #2
-    input[DW-1:0]              axis_in2_tdata,
-    input                      axis_in2_tvalid,
-    output                     axis_in2_tready,
 
     // Our output stream #1
-    output  reg   [DW-1:0]     axis_out1_tdata,
-    output  reg                axis_out1_tvalid,
-    input                      axis_out1_tready,
-
-    // Our output stream #2
-    output  reg   [DW-1:0]     axis_out2_tdata,
-    output  reg                axis_out2_tvalid,
-    input                      axis_out2_tready
+    output  reg   [DW-1:0]     axis_out_tdata,
+    output  reg                axis_out_tvalid,
+    input                      axis_out_tready
 );
 
 reg [2:0] fsm_state;
-assign axis_in1_tready = (resetn == 1);
-assign axis_in2_tready = (resetn == 1);
+assign axis_in_tready = (resetn == 1);
+
 
 
 always @(posedge clk) begin
@@ -41,11 +32,9 @@ always @(posedge clk) begin
         packet_counter <=0;
     end
     else begin
-        if(axis_in1_tvalid||axis_in2_tvalid) begin
-                axis_out1_tdata <= axis_in1_tdata;
-                axis_out2_tdata <= axis_in2_tdata;
-                axis_out1_tvalid <= axis_in1_tvalid;
-                axis_out2_tvalid <= axis_in2_tvalid;
+        if(axis_in_tvalid) begin
+                axis_out_tdata <= axis_in_tdata;
+                axis_out_tvalid <= axis_in_tvalid;
                 packet_counter <= packet_counter + 1;
         end
     end
