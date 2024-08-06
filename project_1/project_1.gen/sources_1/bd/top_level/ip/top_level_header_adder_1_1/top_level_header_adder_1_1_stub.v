@@ -1,7 +1,7 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
-// Date        : Mon Aug  5 10:47:39 2024
+// Date        : Tue Aug  6 10:42:16 2024
 // Host        : LUDMW030265 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               c:/Users/mottaghs/Documents/GitHub/NEXYS_A7_FPGA_INDY/project_1/project_1.gen/sources_1/bd/top_level/ip/top_level_header_adder_1_1/top_level_header_adder_1_1_stub.v
@@ -17,8 +17,8 @@
 module top_level_header_adder_1_1(clk, resetn, packet_counter, FRAME_SIZE, 
   PACKET_SIZE, axis_in_tdata, axis_in_tvalid, axis_in_tready, axis_in_meta_tdata, 
   axis_in_meta_tvalid, axis_in_meta_tready, axis_out_tdata, axis_out_tvalid, 
-  axis_out_tready, axis_out_tlast, axis_out_tkeep)
-/* synthesis syn_black_box black_box_pad_pin="clk,resetn,packet_counter[128:0],FRAME_SIZE[31:0],PACKET_SIZE[15:0],axis_in_tdata[127:0],axis_in_tvalid,axis_in_tready,axis_in_meta_tdata[127:0],axis_in_meta_tvalid,axis_in_meta_tready,axis_out_tdata[127:0],axis_out_tvalid,axis_out_tready,axis_out_tlast,axis_out_tkeep[15:0]" */;
+  axis_out_tready, axis_out_tlast)
+/* synthesis syn_black_box black_box_pad_pin="clk,resetn,packet_counter[128:0],FRAME_SIZE[31:0],PACKET_SIZE[15:0],axis_in_tdata[127:0],axis_in_tvalid,axis_in_tready,axis_in_meta_tdata[127:0],axis_in_meta_tvalid,axis_in_meta_tready,axis_out_tdata[127:0],axis_out_tvalid,axis_out_tready,axis_out_tlast" */;
   input clk;
   input resetn;
   input [128:0]packet_counter;
@@ -34,5 +34,4 @@ module top_level_header_adder_1_1(clk, resetn, packet_counter, FRAME_SIZE,
   output axis_out_tvalid;
   input axis_out_tready;
   output axis_out_tlast;
-  output [15:0]axis_out_tkeep;
 endmodule

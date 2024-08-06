@@ -1,7 +1,7 @@
 //Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2021.1.1 (win64) Build 3286242 Wed Jul 28 13:10:47 MDT 2021
-//Date        : Mon Aug  5 10:46:58 2024
+//Date        : Tue Aug  6 10:41:27 2024
 //Host        : LUDMW030265 running 64-bit major release  (build 9200)
 //Command     : generate_target top_level.bd
 //Design      : top_level
@@ -42,7 +42,6 @@ module path_0_imp_PQ87BQ
     axis_in_tready,
     axis_in_tvalid,
     axis_out_tdata,
-    axis_out_tkeep,
     axis_out_tlast,
     axis_out_tready,
     axis_out_tvalid,
@@ -57,7 +56,6 @@ module path_0_imp_PQ87BQ
   output axis_in_tready;
   input axis_in_tvalid;
   output [127:0]axis_out_tdata;
-  output [15:0]axis_out_tkeep;
   output axis_out_tlast;
   input axis_out_tready;
   output axis_out_tvalid;
@@ -69,7 +67,6 @@ module path_0_imp_PQ87BQ
   wire axis_data_fifo_0_M_AXIS1_TREADY;
   wire axis_data_fifo_0_M_AXIS1_TVALID;
   wire [127:0]axis_data_fifo_0_M_AXIS_TDATA;
-  wire [15:0]axis_data_fifo_0_M_AXIS_TKEEP;
   wire axis_data_fifo_0_M_AXIS_TLAST;
   wire axis_data_fifo_0_M_AXIS_TREADY;
   wire axis_data_fifo_0_M_AXIS_TVALID;
@@ -92,7 +89,6 @@ module path_0_imp_PQ87BQ
   assign axis_data_fifo_0_M_AXIS_TREADY = axis_out_tready;
   assign axis_in_tready = data_switch_0_axis_out1_TREADY;
   assign axis_out_tdata[127:0] = axis_data_fifo_0_M_AXIS_TDATA;
-  assign axis_out_tkeep[15:0] = axis_data_fifo_0_M_AXIS_TKEEP;
   assign axis_out_tlast = axis_data_fifo_0_M_AXIS_TLAST;
   assign axis_out_tvalid = axis_data_fifo_0_M_AXIS_TVALID;
   assign clk_wiz_clk_100mhz = clk;
@@ -121,7 +117,6 @@ module path_0_imp_PQ87BQ
         .axis_in_tready(packet_counter_0_axis_out_TREADY),
         .axis_in_tvalid(packet_counter_0_axis_out_TVALID),
         .axis_out_tdata(axis_data_fifo_0_M_AXIS_TDATA),
-        .axis_out_tkeep(axis_data_fifo_0_M_AXIS_TKEEP),
         .axis_out_tlast(axis_data_fifo_0_M_AXIS_TLAST),
         .axis_out_tready(axis_data_fifo_0_M_AXIS_TREADY),
         .axis_out_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
@@ -150,7 +145,6 @@ module path_1_imp_1DSOE94
     axis_in_tready,
     axis_in_tvalid,
     axis_out_tdata,
-    axis_out_tkeep,
     axis_out_tlast,
     axis_out_tready,
     axis_out_tvalid,
@@ -165,7 +159,6 @@ module path_1_imp_1DSOE94
   output axis_in_tready;
   input axis_in_tvalid;
   output [127:0]axis_out_tdata;
-  output [15:0]axis_out_tkeep;
   output axis_out_tlast;
   input axis_out_tready;
   output axis_out_tvalid;
@@ -181,7 +174,6 @@ module path_1_imp_1DSOE94
   wire data_switch_0_axis_out2_TREADY;
   wire data_switch_0_axis_out2_TVALID;
   wire [127:0]metadata_splitter_0_axis_out1_TDATA;
-  wire [15:0]metadata_splitter_0_axis_out1_TKEEP;
   wire metadata_splitter_0_axis_out1_TLAST;
   wire metadata_splitter_0_axis_out1_TREADY;
   wire metadata_splitter_0_axis_out1_TVALID;
@@ -199,7 +191,6 @@ module path_1_imp_1DSOE94
   assign S_AXIS_tready = metadata_splitter_0_axis_out3_TREADY;
   assign axis_in_tready = data_switch_0_axis_out2_TREADY;
   assign axis_out_tdata[127:0] = metadata_splitter_0_axis_out1_TDATA;
-  assign axis_out_tkeep[15:0] = metadata_splitter_0_axis_out1_TKEEP;
   assign axis_out_tlast = metadata_splitter_0_axis_out1_TLAST;
   assign axis_out_tvalid = metadata_splitter_0_axis_out1_TVALID;
   assign clk_wiz_clk_100mhz = clk;
@@ -229,7 +220,6 @@ module path_1_imp_1DSOE94
         .axis_in_tready(packet_counter_1_axis_out_TREADY),
         .axis_in_tvalid(packet_counter_1_axis_out_TVALID),
         .axis_out_tdata(metadata_splitter_0_axis_out1_TDATA),
-        .axis_out_tkeep(metadata_splitter_0_axis_out1_TKEEP),
         .axis_out_tlast(metadata_splitter_0_axis_out1_TLAST),
         .axis_out_tready(metadata_splitter_0_axis_out1_TREADY),
         .axis_out_tvalid(metadata_splitter_0_axis_out1_TVALID),
@@ -290,7 +280,6 @@ module top_level
 
   wire [31:0]Net;
   (* CONN_BUS_INFO = "axis_data_fifo_0_M_AXIS xilinx.com:interface:axis:1.0 None TDATA" *) (* DONT_TOUCH *) wire [127:0]axis_data_fifo_0_M_AXIS_TDATA;
-  (* CONN_BUS_INFO = "axis_data_fifo_0_M_AXIS xilinx.com:interface:axis:1.0 None TKEEP" *) (* DONT_TOUCH *) wire [15:0]axis_data_fifo_0_M_AXIS_TKEEP;
   (* CONN_BUS_INFO = "axis_data_fifo_0_M_AXIS xilinx.com:interface:axis:1.0 None TLAST" *) (* DONT_TOUCH *) wire axis_data_fifo_0_M_AXIS_TLAST;
   (* CONN_BUS_INFO = "axis_data_fifo_0_M_AXIS xilinx.com:interface:axis:1.0 None TREADY" *) (* DONT_TOUCH *) wire axis_data_fifo_0_M_AXIS_TREADY;
   (* CONN_BUS_INFO = "axis_data_fifo_0_M_AXIS xilinx.com:interface:axis:1.0 None TVALID" *) (* DONT_TOUCH *) wire axis_data_fifo_0_M_AXIS_TVALID;
@@ -307,7 +296,6 @@ module top_level
   wire meta_data_0_axis_out_TREADY;
   wire meta_data_0_axis_out_TVALID;
   (* CONN_BUS_INFO = "metadata_splitter_0_axis_out1 xilinx.com:interface:axis:1.0 None TDATA" *) (* DONT_TOUCH *) wire [127:0]metadata_splitter_0_axis_out1_TDATA;
-  (* CONN_BUS_INFO = "metadata_splitter_0_axis_out1 xilinx.com:interface:axis:1.0 None TKEEP" *) (* DONT_TOUCH *) wire [15:0]metadata_splitter_0_axis_out1_TKEEP;
   (* CONN_BUS_INFO = "metadata_splitter_0_axis_out1 xilinx.com:interface:axis:1.0 None TLAST" *) (* DONT_TOUCH *) wire metadata_splitter_0_axis_out1_TLAST;
   (* CONN_BUS_INFO = "metadata_splitter_0_axis_out1 xilinx.com:interface:axis:1.0 None TREADY" *) (* DONT_TOUCH *) wire metadata_splitter_0_axis_out1_TREADY;
   (* CONN_BUS_INFO = "metadata_splitter_0_axis_out1 xilinx.com:interface:axis:1.0 None TVALID" *) (* DONT_TOUCH *) wire metadata_splitter_0_axis_out1_TVALID;
@@ -334,12 +322,12 @@ module top_level
         .pp_group(xlconstant_1_dout));
   top_level_data_consumer_0_0 data_consumer
        (.axis_rx1_tdata(axis_data_fifo_0_M_AXIS_TDATA),
-        .axis_rx1_tkeep(axis_data_fifo_0_M_AXIS_TKEEP),
+        .axis_rx1_tkeep({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
         .axis_rx1_tlast(axis_data_fifo_0_M_AXIS_TLAST),
         .axis_rx1_tready(axis_data_fifo_0_M_AXIS_TREADY),
         .axis_rx1_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
         .axis_rx2_tdata(metadata_splitter_0_axis_out1_TDATA),
-        .axis_rx2_tkeep(metadata_splitter_0_axis_out1_TKEEP),
+        .axis_rx2_tkeep({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
         .axis_rx2_tlast(metadata_splitter_0_axis_out1_TLAST),
         .axis_rx2_tready(metadata_splitter_0_axis_out1_TREADY),
         .axis_rx2_tvalid(metadata_splitter_0_axis_out1_TVALID),
@@ -394,7 +382,6 @@ module top_level
         .axis_in_tready(data_switch_0_axis_out1_TREADY),
         .axis_in_tvalid(data_switch_0_axis_out1_TVALID),
         .axis_out_tdata(axis_data_fifo_0_M_AXIS_TDATA),
-        .axis_out_tkeep(axis_data_fifo_0_M_AXIS_TKEEP),
         .axis_out_tlast(axis_data_fifo_0_M_AXIS_TLAST),
         .axis_out_tready(axis_data_fifo_0_M_AXIS_TREADY),
         .axis_out_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
@@ -410,7 +397,6 @@ module top_level
         .axis_in_tready(data_switch_0_axis_out2_TREADY),
         .axis_in_tvalid(data_switch_0_axis_out2_TVALID),
         .axis_out_tdata(metadata_splitter_0_axis_out1_TDATA),
-        .axis_out_tkeep(metadata_splitter_0_axis_out1_TKEEP),
         .axis_out_tlast(metadata_splitter_0_axis_out1_TLAST),
         .axis_out_tready(metadata_splitter_0_axis_out1_TREADY),
         .axis_out_tvalid(metadata_splitter_0_axis_out1_TVALID),
@@ -423,12 +409,10 @@ module top_level
         .peripheral_aresetn(proc_sys_reset_0_peripheral_aresetn));
   top_level_system_ila_0_2 system_ila
        (.SLOT_0_AXIS_tdata(axis_data_fifo_0_M_AXIS_TDATA),
-        .SLOT_0_AXIS_tkeep(axis_data_fifo_0_M_AXIS_TKEEP),
         .SLOT_0_AXIS_tlast(axis_data_fifo_0_M_AXIS_TLAST),
         .SLOT_0_AXIS_tready(axis_data_fifo_0_M_AXIS_TREADY),
         .SLOT_0_AXIS_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
         .SLOT_1_AXIS_tdata(metadata_splitter_0_axis_out1_TDATA),
-        .SLOT_1_AXIS_tkeep(metadata_splitter_0_axis_out1_TKEEP),
         .SLOT_1_AXIS_tlast(metadata_splitter_0_axis_out1_TLAST),
         .SLOT_1_AXIS_tready(metadata_splitter_0_axis_out1_TREADY),
         .SLOT_1_AXIS_tvalid(metadata_splitter_0_axis_out1_TVALID),

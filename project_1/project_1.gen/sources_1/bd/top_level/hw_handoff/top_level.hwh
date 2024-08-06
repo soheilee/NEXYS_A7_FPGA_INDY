@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Aug  5 10:47:01 2024" VIVADOVERSION="2021.1.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Aug  6 10:41:31 2024" VIVADOVERSION="2021.1.1">
 
   <SYSTEMINFO ARCH="artix7" DEVICE="7a100t" NAME="top_level" PACKAGE="csg324" SPEEDGRADE="-1"/>
 
@@ -101,11 +101,7 @@
             <CONNECTION INSTANCE="path_0_header_adder_0" PORT="axis_out_tdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="axis_rx1_tkeep" RIGHT="0" SIGIS="undef" SIGNAME="data_consumer_axis_rx1_tkeep">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="path_0_header_adder_0" PORT="axis_out_tkeep"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="axis_rx1_tkeep" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" NAME="axis_rx1_tlast" SIGIS="undef" SIGNAME="data_consumer_axis_rx1_tlast">
           <CONNECTIONS>
             <CONNECTION INSTANCE="path_0_header_adder_0" PORT="axis_out_tlast"/>
@@ -126,11 +122,7 @@
             <CONNECTION INSTANCE="path_1_header_adder_1" PORT="axis_out_tdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="axis_rx2_tkeep" RIGHT="0" SIGIS="undef" SIGNAME="data_consumer_axis_rx2_tkeep">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="path_1_header_adder_1" PORT="axis_out_tkeep"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="axis_rx2_tkeep" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" NAME="axis_rx2_tlast" SIGIS="undef" SIGNAME="data_consumer_axis_rx2_tlast">
           <CONNECTIONS>
             <CONNECTION INSTANCE="path_1_header_adder_1" PORT="axis_out_tlast"/>
@@ -798,11 +790,6 @@
             <CONNECTION INSTANCE="data_consumer" PORT="axis_rx1_tlast"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="15" NAME="axis_out_tkeep" RIGHT="0" SIGIS="undef" SIGNAME="data_consumer_axis_rx1_tkeep">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="data_consumer" PORT="axis_rx1_tkeep"/>
-          </CONNECTIONS>
-        </PORT>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="path_0_packet_counter_0_axis_out" NAME="axis_in" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
@@ -852,7 +839,7 @@
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
           <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
-          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.0"/>
@@ -861,7 +848,6 @@
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
             <PORTMAP LOGICAL="TDATA" PHYSICAL="axis_out_tdata"/>
-            <PORTMAP LOGICAL="TKEEP" PHYSICAL="axis_out_tkeep"/>
             <PORTMAP LOGICAL="TLAST" PHYSICAL="axis_out_tlast"/>
             <PORTMAP LOGICAL="TVALID" PHYSICAL="axis_out_tvalid"/>
             <PORTMAP LOGICAL="TREADY" PHYSICAL="axis_out_tready"/>
@@ -1183,11 +1169,6 @@
             <CONNECTION INSTANCE="data_consumer" PORT="axis_rx2_tlast"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="15" NAME="axis_out_tkeep" RIGHT="0" SIGIS="undef" SIGNAME="data_consumer_axis_rx2_tkeep">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="data_consumer" PORT="axis_rx2_tkeep"/>
-          </CONNECTIONS>
-        </PORT>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="path_1_packet_counter_1_axis_out" NAME="axis_in" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
@@ -1237,7 +1218,7 @@
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
           <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
-          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.0"/>
@@ -1246,7 +1227,6 @@
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
             <PORTMAP LOGICAL="TDATA" PHYSICAL="axis_out_tdata"/>
-            <PORTMAP LOGICAL="TKEEP" PHYSICAL="axis_out_tkeep"/>
             <PORTMAP LOGICAL="TLAST" PHYSICAL="axis_out_tlast"/>
             <PORTMAP LOGICAL="TVALID" PHYSICAL="axis_out_tvalid"/>
             <PORTMAP LOGICAL="TREADY" PHYSICAL="axis_out_tready"/>
@@ -1945,11 +1925,11 @@
             <CONNECTION INSTANCE="data_switch" PORT="clk"/>
             <CONNECTION INSTANCE="meta_data" PORT="clk"/>
             <CONNECTION INSTANCE="path_1_packet_counter_1" PORT="clk"/>
-            <CONNECTION INSTANCE="path_1_header_adder_1" PORT="clk"/>
             <CONNECTION INSTANCE="path_1_axis_data_fifo_1" PORT="s_axis_aclk"/>
+            <CONNECTION INSTANCE="path_1_header_adder_1" PORT="clk"/>
             <CONNECTION INSTANCE="path_0_packet_counter_0" PORT="clk"/>
-            <CONNECTION INSTANCE="path_0_header_adder_0" PORT="clk"/>
             <CONNECTION INSTANCE="path_0_axis_data_fifo_0" PORT="s_axis_aclk"/>
+            <CONNECTION INSTANCE="path_0_header_adder_0" PORT="clk"/>
             <CONNECTION INSTANCE="source_100mhz_proc_sys_reset_0" PORT="slowest_sync_clk"/>
           </CONNECTIONS>
         </PORT>
@@ -2001,11 +1981,11 @@
             <CONNECTION INSTANCE="data_switch" PORT="resetn"/>
             <CONNECTION INSTANCE="meta_data" PORT="resetn"/>
             <CONNECTION INSTANCE="path_1_packet_counter_1" PORT="resetn"/>
-            <CONNECTION INSTANCE="path_1_header_adder_1" PORT="resetn"/>
             <CONNECTION INSTANCE="path_1_axis_data_fifo_1" PORT="s_axis_aresetn"/>
+            <CONNECTION INSTANCE="path_1_header_adder_1" PORT="resetn"/>
             <CONNECTION INSTANCE="path_0_packet_counter_0" PORT="resetn"/>
-            <CONNECTION INSTANCE="path_0_header_adder_0" PORT="resetn"/>
             <CONNECTION INSTANCE="path_0_axis_data_fifo_0" PORT="s_axis_aresetn"/>
+            <CONNECTION INSTANCE="path_0_header_adder_0" PORT="resetn"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -5855,12 +5835,10 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="127" NAME="SLOT_0_AXIS_tdata" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="15" NAME="SLOT_0_AXIS_tkeep" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" NAME="SLOT_0_AXIS_tlast" SIGIS="undef"/>
         <PORT DIR="I" NAME="SLOT_0_AXIS_tvalid" SIGIS="undef"/>
         <PORT DIR="I" NAME="SLOT_0_AXIS_tready" SIGIS="undef"/>
         <PORT DIR="I" LEFT="127" NAME="SLOT_1_AXIS_tdata" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="15" NAME="SLOT_1_AXIS_tkeep" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" NAME="SLOT_1_AXIS_tlast" SIGIS="undef"/>
         <PORT DIR="I" NAME="SLOT_1_AXIS_tvalid" SIGIS="undef"/>
         <PORT DIR="I" NAME="SLOT_1_AXIS_tready" SIGIS="undef"/>
@@ -5874,7 +5852,7 @@
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
           <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
-          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.0"/>
@@ -5883,7 +5861,6 @@
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
             <PORTMAP LOGICAL="TDATA" PHYSICAL="SLOT_0_AXIS_tdata"/>
-            <PORTMAP LOGICAL="TKEEP" PHYSICAL="SLOT_0_AXIS_tkeep"/>
             <PORTMAP LOGICAL="TLAST" PHYSICAL="SLOT_0_AXIS_tlast"/>
             <PORTMAP LOGICAL="TVALID" PHYSICAL="SLOT_0_AXIS_tvalid"/>
             <PORTMAP LOGICAL="TREADY" PHYSICAL="SLOT_0_AXIS_tready"/>
@@ -5896,7 +5873,7 @@
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
           <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
           <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
-          <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.0"/>
@@ -5905,7 +5882,6 @@
           <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
           <PORTMAPS>
             <PORTMAP LOGICAL="TDATA" PHYSICAL="SLOT_1_AXIS_tdata"/>
-            <PORTMAP LOGICAL="TKEEP" PHYSICAL="SLOT_1_AXIS_tkeep"/>
             <PORTMAP LOGICAL="TLAST" PHYSICAL="SLOT_1_AXIS_tlast"/>
             <PORTMAP LOGICAL="TVALID" PHYSICAL="SLOT_1_AXIS_tvalid"/>
             <PORTMAP LOGICAL="TREADY" PHYSICAL="SLOT_1_AXIS_tready"/>

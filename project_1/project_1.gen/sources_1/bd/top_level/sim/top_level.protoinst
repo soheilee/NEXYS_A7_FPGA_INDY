@@ -155,7 +155,6 @@
 						"ACLK": { "actual": "clk"},
 						"ARESETN": { "actual": "resetn"},
 						"TDATA": { "actual": "axis_out_tdata"},
-						"TKEEP": { "actual": "axis_out_tkeep"},
 						"TLAST": { "actual": "axis_out_tlast"},
 						"TREADY": { "actual": "axis_out_tready"},
 						"TVALID": { "actual": "axis_out_tvalid"}
@@ -187,7 +186,6 @@
 						"ACLK": { "actual": "clk"},
 						"ARESETN": { "actual": "resetn"},
 						"TDATA": { "actual": "axis_out_tdata"},
-						"TKEEP": { "actual": "axis_out_tkeep"},
 						"TLAST": { "actual": "axis_out_tlast"},
 						"TREADY": { "actual": "axis_out_tready"},
 						"TVALID": { "actual": "axis_out_tvalid"}
@@ -259,7 +257,6 @@
 						"ACLK": { "actual": "clk"},
 						"ARESETN": { "actual": "resetn"},
 						"TDATA": { "actual": "axis_out_tdata"},
-						"TKEEP": { "actual": "axis_out_tkeep"},
 						"TLAST": { "actual": "axis_out_tlast"},
 						"TREADY": { "actual": "axis_out_tready"},
 						"TVALID": { "actual": "axis_out_tvalid"}
@@ -291,7 +288,6 @@
 						"ACLK": { "actual": "clk"},
 						"ARESETN": { "actual": "resetn"},
 						"TDATA": { "actual": "axis_out_tdata"},
-						"TKEEP": { "actual": "axis_out_tkeep"},
 						"TLAST": { "actual": "axis_out_tlast"},
 						"TREADY": { "actual": "axis_out_tready"},
 						"TVALID": { "actual": "axis_out_tvalid"}

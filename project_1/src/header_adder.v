@@ -3,12 +3,12 @@ module header_adder #(
     parameter META_DATA_LENGTH = 1
 )
 (
-    input                      clk, resetn,
+    input                      clk, resetn,  // Input clock and active-low reset
     input [128:0]          packet_counter,  //Counter for the path switch
-    input [31:0]            FRAME_SIZE,
-    input [15:0]            PACKET_SIZE,
+    input [31:0]            FRAME_SIZE,     // Input for frame size 
+    input [15:0]            PACKET_SIZE,    // Input for packet size
 
-    // The input stream
+    // The input axi stream
     input[DW-1:0]              axis_in_tdata,
     input                      axis_in_tvalid,
     output                     axis_in_tready,
@@ -18,12 +18,11 @@ module header_adder #(
     input                      axis_in_meta_tvalid,
     output                     axis_in_meta_tready,
 
-    // Our output stream
+    // The output axi stream
     output  reg   [DW-1:0]     axis_out_tdata,
     output  reg                axis_out_tvalid,
     input                      axis_out_tready,
-    output reg                 axis_out_tlast,
-    output reg    [DW/8-1:0]   axis_out_tkeep
+    output reg                 axis_out_tlast
 );
 
 assign axis_in_tready = (resetn == 1);
@@ -76,6 +75,7 @@ always @* begin
 
     case (fsm_state)
         PINGPONG_DATAFRAME: begin
+                                axis_out_tlast = 0;
                                 if (axis_in_tvalid) begin
                                     axis_out_tdata = axis_in_tdata;
                                     axis_out_tvalid = axis_in_tvalid;
@@ -92,6 +92,7 @@ always @* begin
         FRAME_COUNTER:      begin
                                     axis_out_tdata = packet_counter;
                                     axis_out_tvalid = 1;
+                                    axis_out_tlast = 1;
                             end
 
         default:            begin
