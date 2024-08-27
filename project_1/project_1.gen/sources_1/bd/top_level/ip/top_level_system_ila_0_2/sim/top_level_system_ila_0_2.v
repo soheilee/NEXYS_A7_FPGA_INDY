@@ -55,6 +55,9 @@
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module top_level_system_ila_0_2 (
   clk,
+  probe0,
+  probe1,
+  probe2,
   SLOT_0_AXIS_tdata,
   SLOT_0_AXIS_tlast,
   SLOT_0_AXIS_tvalid,
@@ -69,6 +72,9 @@ module top_level_system_ila_0_2 (
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /source_100mhz/clk_wiz_clk_out1, ASSOCIATED_BUSIF SLOT_0_AXIS:SLOT_1_AXIS, ASSOCIATED_RESET resetn, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.clk CLK" *)
 input wire clk;
+input wire [15 : 0] probe0;
+input wire [15 : 0] probe1;
+input wire [15 : 0] probe2;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 SLOT_0_AXIS TDATA" *)
 input wire [127 : 0] SLOT_0_AXIS_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 SLOT_0_AXIS TLAST" *)
@@ -93,6 +99,9 @@ input wire resetn;
 
   bd_5a3c inst (
     .clk(clk),
+    .probe0(probe0),
+    .probe1(probe1),
+    .probe2(probe2),
     .SLOT_0_AXIS_tdata(SLOT_0_AXIS_tdata),
     .SLOT_0_AXIS_tlast(SLOT_0_AXIS_tlast),
     .SLOT_0_AXIS_tvalid(SLOT_0_AXIS_tvalid),

@@ -19,6 +19,10 @@ module data_switch# (
     input                      clk, resetn,
     input [15:0]               PACKET_SIZE,
     input [7:0]                PP_GROUP,
+    input [31:0]               FRAME_SIZE,
+    output reg [15:0]          counter_tlast1,
+    output reg [15:0]          counter_tlast2,
+    output reg [15:0]          counter_ps,  //Counter for the path switch
 
     // The input stream
     input[DW-1:0]              axis_in_tdata,
@@ -28,11 +32,13 @@ module data_switch# (
     // Our output stream #1
     output  reg   [DW-1:0]     axis_out1_tdata,
     output  reg                axis_out1_tvalid,
+    output  reg                axis_out1_tlast,
     input                      axis_out1_tready,
 
     // Our output stream #2
     output  reg   [DW-1:0]     axis_out2_tdata,
     output  reg                axis_out2_tvalid,
+    output  reg                axis_out2_tlast,
     input                      axis_out2_tready
 
 
@@ -47,7 +53,7 @@ assign axis_in_tready = (resetn == 1);
 reg output_path;
 localparam FSM_OUTPUT_AXIS1 = 1;
 localparam FSM_OUTPUT_AXIS2  = 0;
-reg [15:0]          counter_ps;  //Counter for the path switch
+
 always @(posedge clk) begin
     if (resetn == 0) begin
         counter_ps <=0;
@@ -56,25 +62,48 @@ always @(posedge clk) begin
         if(counter_ps==(PP_GROUP*PACKET_SIZE-1)) begin
                 counter_ps <=0;
                 output_path <= ~output_path;
+                if(output_path==0) begin
+                    if(counter_tlast1 == (FRAME_SIZE/PACKET_SIZE))
+                        counter_tlast1 <= 0;
+                    else
+                        counter_tlast1 <= counter_tlast1 +PP_GROUP*PACKET_SIZE;
+                end
+                else begin
+                    if(counter_tlast2 == (FRAME_SIZE/PACKET_SIZE))
+                        counter_tlast2 <= 0;
+                    else
+                        counter_tlast2 <= counter_tlast2 +PP_GROUP*PACKET_SIZE;
+                end
+                
             end
-            else begin
-                counter_ps <= counter_ps +1;
-            end
+        else begin
+            counter_ps <= counter_ps +1;
+            
+        end
     end
 end
 
 // The output is set to each output for the packet length defined by the parameters
 
 always @* begin
-    if(output_path==FSM_OUTPUT_AXIS1) begin 
+    axis_out1_tdata  = 0;
+    axis_out1_tvalid = 0;
+    axis_out1_tlast  = 0;
+    axis_out2_tdata  = 0;
+    axis_out2_tvalid = 0;
+    axis_out2_tlast  = 0;
+
+    if(output_path) begin 
         axis_out1_tdata  = axis_in_tdata;
-        axis_out1_tvalid = axis_in_tvalid;
-        axis_out2_tvalid = 0;   
+        axis_out1_tvalid = axis_in_tvalid;  
+        if(counter_tlast1 > 124 && counter_ps > 2) 
+            axis_out1_tlast  = 1;
     end
-    else if(output_path==FSM_OUTPUT_AXIS2) begin
+    else begin
         axis_out2_tdata  = axis_in_tdata;
         axis_out2_tvalid = axis_in_tvalid;
-        axis_out1_tvalid = 0;
+        if(counter_tlast2 > 124 && counter_ps > 2) 
+            axis_out2_tlast  = 1;
     end
 end
 

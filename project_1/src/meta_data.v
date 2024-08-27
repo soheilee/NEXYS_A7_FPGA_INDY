@@ -11,11 +11,11 @@ module meta_data # (parameter DW=128)
 reg [2:0] counter;
 
 always @(posedge clk) begin
-    if (resetn == 0)
+    if (resetn == 0) begin
         axis_out_tvalid <= 0;
+    end
     axis_out_tvalid <= 1;
     axis_out_tdata <= 1638;
-    counter <= counter +1;
 
 end
 
