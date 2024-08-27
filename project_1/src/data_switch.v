@@ -54,6 +54,8 @@ reg output_path;
 localparam FSM_OUTPUT_AXIS1 = 1;
 localparam FSM_OUTPUT_AXIS2  = 0;
 
+
+
 always @(posedge clk) begin
     if (resetn == 0) begin
         counter_ps <=0;
