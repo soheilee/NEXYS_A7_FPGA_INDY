@@ -53,28 +53,33 @@ assign axis_in_tready = (resetn == 1);
 reg output_path;
 localparam FSM_OUTPUT_AXIS1 = 1;
 localparam FSM_OUTPUT_AXIS2  = 0;
-
-
+localparam FSM_PINGPONG_STATE = 0;
+wire [31:0] frame_per_output;
+wire [31:0] packet_per_output;
+wire [31:0] tlast_enable_threshold;
+assign frame_per_output = FRAME_SIZE/PACKET_SIZE;
+assign packet_per_output = PP_GROUP*PACKET_SIZE;
+assign tlast_enable_threshold = frame_per_output - packet_per_output;
 
 always @(posedge clk) begin
     if (resetn == 0) begin
         counter_ps <=0;
     end
     else begin
-        if(counter_ps==(PP_GROUP*PACKET_SIZE-1)) begin
+        if(counter_ps==(packet_per_output-1)) begin
                 counter_ps <=0;
                 output_path <= ~output_path;
                 if(output_path==0) begin
-                    if(counter_tlast1 == (FRAME_SIZE/PACKET_SIZE))
+                    if(counter_tlast1 == frame_per_output)
                         counter_tlast1 <= 0;
                     else
-                        counter_tlast1 <= counter_tlast1 +PP_GROUP*PACKET_SIZE;
+                        counter_tlast1 <= counter_tlast1 +packet_per_output;
                 end
                 else begin
-                    if(counter_tlast2 == (FRAME_SIZE/PACKET_SIZE))
+                    if(counter_tlast2 == frame_per_output)
                         counter_tlast2 <= 0;
                     else
-                        counter_tlast2 <= counter_tlast2 +PP_GROUP*PACKET_SIZE;
+                        counter_tlast2 <= counter_tlast2 +packet_per_output;
                 end
                 
             end
@@ -98,13 +103,13 @@ always @* begin
     if(output_path) begin 
         axis_out1_tdata  = axis_in_tdata;
         axis_out1_tvalid = axis_in_tvalid;  
-        if(counter_tlast1 > 124 && counter_ps > 2) 
+        if(counter_tlast1 > tlast_enable_threshold && counter_ps > packet_per_output-2) 
             axis_out1_tlast  = 1;
     end
     else begin
         axis_out2_tdata  = axis_in_tdata;
         axis_out2_tvalid = axis_in_tvalid;
-        if(counter_tlast2 > 124 && counter_ps > 2) 
+        if(counter_tlast2 > tlast_enable_threshold && counter_ps > packet_per_output-2) 
             axis_out2_tlast  = 1;
     end
 end
